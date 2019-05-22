@@ -35,6 +35,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  z-index: 0;
 
   background: linear-gradient(
     180deg,

@@ -14,18 +14,20 @@ const H1 = styled.h1`
   line-height: 132px;
   text-align: center;
   margin: 0;
+  z-index: 10;
 
-  color: white;
+  color: #d3d3d3;
 `
 
 const H2 = styled.h2`
   font-family: Lily Script One;
   font-style: normal;
   font-weight: normal;
-  font-size: 96px;
+  font-size: 48px;
   line-height: 132px;
   text-align: center;
   margin: 0;
+  z-index: 10;
 
   color: #d3d3d3;
 `
@@ -38,11 +40,14 @@ const Description = styled.h2`
   line-height: 60px;
   text-align: center;
   margin: 0;
+  max-width: 50vw;
+  z-index: 10;
 
   color: #d3d3d3;
 `
 
 const Line = styled.div`
+  z-index: 10;
   border: 5px solid #d3d3d3;
   transform: rotate(0.28deg);
   width: 25vw;
@@ -65,42 +70,45 @@ const BackgroundNoStyle = ({ children }) => (
     render={data => {
       // Set ImageData.
       const imageData = data.desktop.childImageSharp.fluid
-			return (
-				<BackgroundImage style={{
-					height: "100vh",
-					width: "100%",
-					display: "flex",
-					flexDirection: "column",
-					justifyContent: "center",
-					alignItems: "center",
-					alignContent: "center",
-				}} fluid={imageData} backgroundColor={`#040e18`}>
-				{children}
-			</BackgroundImage>
-			)
-		}}
-	/>
+      return (
+        <BackgroundImage
+          style={{
+            height: "100vh",
+            width: "100%",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            alignContent: "center",
+          }}
+          fluid={imageData}
+          backgroundColor={`#040e18`}
+        >
+          {children}
+        </BackgroundImage>
+      )
+    }}
+  />
 )
 
 const Background = styled(BackgroundNoStyle)`
-	background-position: bottom center;
-	background-repeat: repeat-y;
-	background-size: cover;
+  background-position: bottom center;
+  background-repeat: repeat-y;
+  background-size: cover;
 `
 
 export const Welcome = ({ title, subtitle, description }) => (
-
-	<Background>
-		{/* TODO: constant folder */}
+  <Background>
+    {/* TODO: constant folder */}
     <Menu items={["Cafés", "Food", "Promos", "Fidelité"]} />
 
-      {title && <H1>{title}</H1>}
-      {subtitle && <H2>{subtitle}</H2>}
-      {description && (
-        <>
-          <Line />
-          <Description>{description}</Description>
-        </>
-      )}
+    {title && <H1>{title}</H1>}
+    {subtitle && <H2>{subtitle}</H2>}
+    {description && (
+      <>
+        <Line />
+        <Description>{description}</Description>
+      </>
+    )}
   </Background>
 )

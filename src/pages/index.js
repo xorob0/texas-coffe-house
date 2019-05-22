@@ -7,7 +7,7 @@ const IndexPage = () => (
   <div>
     <Welcome
       title="Texas"
-      subtitle="Coffee House"
+      subtitle="- Coffee House -"
       description="Try the John Wayne! It’s an exeperience !"
     />
     <h1>Hi people</h1>
