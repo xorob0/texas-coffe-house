@@ -1,0 +1,20 @@
+import React from "react"
+import { Link } from "gatsby"
+
+import { Welcome } from "../components/dumb/welcome"
+
+const IndexPage = () => (
+  <div>
+    <Welcome
+      title="Texas"
+      subtitle="Coffee House"
+      description="Try the John Wayne! It’s an exeperience !"
+    />
+    <h1>Hi people</h1>
+    <p>Welcome to your new Gatsby site.</p>
+    <p>Now go build something great.</p>
+    <Link to="/page-2/">Go to page 2</Link>
+  </div>
+)
+
+export default IndexPage
