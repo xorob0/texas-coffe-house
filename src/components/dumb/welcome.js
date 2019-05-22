@@ -11,7 +11,6 @@ const H1 = styled.h1`
   font-style: normal;
   font-weight: normal;
   font-size: 96px;
-  line-height: 132px;
   text-align: center;
   margin: 0;
   z-index: 10;
@@ -24,7 +23,6 @@ const H2 = styled.h2`
   font-style: normal;
   font-weight: normal;
   font-size: 48px;
-  line-height: 132px;
   text-align: center;
   margin: 0;
   z-index: 10;
@@ -32,18 +30,10 @@ const H2 = styled.h2`
   color: #d3d3d3;
 `
 
-const Description = styled.h2`
+const Description = styled(H2)`
   font-family: Source Sans Pro;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 48px;
   line-height: 60px;
-  text-align: center;
-  margin: 0;
   max-width: 50vw;
-  z-index: 10;
-
-  color: #d3d3d3;
 `
 
 const Line = styled.div`
@@ -51,10 +41,10 @@ const Line = styled.div`
   border: 5px solid #d3d3d3;
   transform: rotate(0.28deg);
   width: 25vw;
-  margin: 20px;
+  margin: 50px;
 `
 
-const BackgroundNoStyle = ({ children }) => (
+const Background = ({ children }) => (
   <StaticQuery
     query={graphql`
       query {
@@ -90,12 +80,6 @@ const BackgroundNoStyle = ({ children }) => (
     }}
   />
 )
-
-const Background = styled(BackgroundNoStyle)`
-  background-position: bottom center;
-  background-repeat: repeat-y;
-  background-size: cover;
-`
 
 export const Welcome = ({ title, subtitle, description }) => (
   <Background>
