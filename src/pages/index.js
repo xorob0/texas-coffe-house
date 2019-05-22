@@ -2,19 +2,20 @@ import React from "react"
 import { Link } from "gatsby"
 
 import { Welcome } from "../components/dumb/welcome"
+import { Quote } from "../components/dumb/quote"
 
 const IndexPage = () => (
-  <div>
+  <>
     <Welcome
       title="Texas"
       subtitle="- Coffee House -"
       description="Try the John Wayne! It’s an exeperience !"
     />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <Link to="/page-2/">Go to page 2</Link>
-  </div>
+    <Quote
+      text="The best coffee in town and the best John Wayne in the world"
+      author="Tim Toum"
+    />
+  </>
 )
 
 export default IndexPage
