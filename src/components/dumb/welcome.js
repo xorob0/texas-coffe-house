@@ -12,9 +12,13 @@ const H1 = styled.h1`
   font-style: normal;
   font-weight: normal;
   font-size: 96px;
+  @media (max-width: 700px) {
+    font-size: 48px;
+  }
   text-align: center;
   margin: 0;
   z-index: 10;
+  margin-top: 50px;
 
   color: #d3d3d3;
 `
@@ -24,6 +28,9 @@ const H2 = styled.h2`
   font-style: normal;
   font-weight: normal;
   font-size: 48px;
+  @media (max-width: 700px) {
+    font-size: 36px;
+  }
   text-align: center;
   margin: 0;
   z-index: 10;

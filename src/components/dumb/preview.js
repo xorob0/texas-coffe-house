@@ -17,6 +17,7 @@ const Button = styled(Link)`
   color: white;
   padding: 10px;
   border-radius: 14px;
+  margin: 25px;
 `
 
 export const Preview = ({ path, text }) => (
