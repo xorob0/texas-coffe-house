@@ -1,10 +1,11 @@
+// TODO alts images
 import React from "react"
 import styled from "styled-components"
 
-import { StaticQuery, graphql } from "gatsby"
-import BackgroundImage from "gatsby-background-image"
-
+import { Background } from "./background"
 import { Menu } from "./menu"
+
+import { PATHS } from "../../constants/paths"
 
 const H1 = styled.h1`
   font-family: Lily Script One;
@@ -44,48 +45,10 @@ const Line = styled.div`
   margin: 50px;
 `
 
-const Background = ({ children }) => (
-  <StaticQuery
-    query={graphql`
-      query {
-        desktop: file(relativePath: { eq: "background.jpg" }) {
-          childImageSharp {
-            fluid(quality: 90, maxWidth: 4160) {
-              ...GatsbyImageSharpFluid_withWebp
-            }
-          }
-        }
-      }
-    `}
-    render={data => {
-      // Set ImageData.
-      const imageData = data.desktop.childImageSharp.fluid
-      return (
-        <BackgroundImage
-          style={{
-            height: "100vh",
-            width: "100%",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            alignContent: "center",
-          }}
-          fluid={imageData}
-          backgroundColor={`#040e18`}
-        >
-          {children}
-        </BackgroundImage>
-      )
-    }}
-  />
-)
-
 export const Welcome = ({ title, subtitle, description }) => (
   <Background>
     {/* TODO: constant folder */}
-    <Menu items={["Cafés", "Food", "Promos", "Fidelité"]} />
-
+    <Menu items={PATHS} />
     {title && <H1>{title}</H1>}
     {subtitle && <H2>{subtitle}</H2>}
     {description && (

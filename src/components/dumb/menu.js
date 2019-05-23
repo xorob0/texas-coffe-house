@@ -54,12 +54,12 @@ export const Menu = ({ items }) => (
     <List>
       {items.map(item => (
         <Link
-          key={item}
+          key={item.text}
           style={itemStyle}
           activeStyle={itemStyleActive}
-          to={`/${item}/`}
+          to={`/${item.path}/`}
         >
-          {capitalizeFirstLetter(item)}
+          {capitalizeFirstLetter(item.text)}
         </Link>
       ))}
     </List>
