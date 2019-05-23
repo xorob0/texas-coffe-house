@@ -13,7 +13,7 @@ module.exports = {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: "Texas Coffee House Fidelity",
-        short_name: "Texas Cofee House",
+        short_name: "Texas Coffee House",
         description:
           "The app used to manages your fidelity points at the Texas Coffee House, in Mons, Belgium",
         start_url: "/",
