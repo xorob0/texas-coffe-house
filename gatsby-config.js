@@ -21,14 +21,6 @@ module.exports = {
         theme_color: "brown",
         display: "standalone",
         icon: "src/images/icon.jpg",
-        crossOrigin: `use-credentials`,
-        related_applications: [
-          {
-            platform: "play",
-            url:
-              "https://play.google.com/store/apps/details?id=cheeaun.hackerweb",
-          },
-        ],
       },
     },
     `gatsby-plugin-offline`,
