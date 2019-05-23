@@ -30,7 +30,7 @@ export const Background = ({ children, path, ...props }) => (
     render={data => {
       const imageData = data.desktop.childImageSharp.fluid
       return (
-        <BackgroundImageWrapper fluid={imageData} {...props}>
+        <BackgroundImageWrapper fadeIn="soft" fluid={imageData} {...props}>
           {children}
         </BackgroundImageWrapper>
       )
