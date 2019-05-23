@@ -18,7 +18,7 @@ module.exports = {
           "The app used to manages your fidelity points at the Texas Coffee House, in Mons, Belgium",
         start_url: "/",
         background_color: `#f7f0eb`,
-        theme_color: `#a2466c`,
+        theme_color: `#996633`,
         display: `standalone`,
         icon: "src/images/icon.jpg",
       },
