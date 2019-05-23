@@ -7,8 +7,6 @@ import Burger from "@animated-burgers/burger-arrow"
 import "@animated-burgers/burger-arrow/dist/styles.css"
 import "../../styles/burger.css"
 
-import { ClickOutsideOf } from "../clickedOutsideOf"
-
 export const SlideMenu = styled.div`
   box-shadow: 0 6px 12px 0 rgba(18, 19, 18, 0.27);
   left: ${props => (props.isActive ? "0" : "-100%")};
@@ -79,16 +77,7 @@ export const MobileNavbar = ({
   children,
 }) => (
   <Fragment>
-    <ClickOutsideOf
-      onClickOutside={e => {
-        if (slideMenuOpened) {
-          e.preventDefault()
-          toggleSlideMenu()
-        }
-      }}
-    >
-      <SlideMenu isActive={slideMenuOpened}>>{children}</SlideMenu>
-    </ClickOutsideOf>
+    <SlideMenu isActive={slideMenuOpened}>>{children}</SlideMenu>
   </Fragment>
 )
 
