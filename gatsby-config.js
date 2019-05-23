@@ -1,4 +1,5 @@
 //TODO: PWA adaptation
+//TODO: Vector preview for images lazy loading
 module.exports = {
   siteMetadata: {
     title: `Texas Coffee House`,
