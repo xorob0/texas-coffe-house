@@ -133,6 +133,9 @@ const Flex = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  @media (max-width: 450px) {
+    max-width: 250px;
+  }
 `
 
 const Item = ({ name, description, price }) => (
