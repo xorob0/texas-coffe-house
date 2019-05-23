@@ -1,4 +1,5 @@
 import React from "react"
+import { Helmet } from "react-helmet"
 
 import { Welcome } from "../components/dumb/welcome"
 import { Quote } from "../components/dumb/quote"
