@@ -9,21 +9,17 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-styled-components`,
+    `gatsby-plugin-offline`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: "Texas Coffee House Fidelity",
-        short_name: "Texas Cofee House",
-        description:
-          "The app used to manages your fidelity points at the Texas Coffee House, in Mons, Belgium",
         start_url: "/",
-        background_color: "white",
-        theme_color: "brown",
-        display: "standalone",
-        icon: "src/images/icon.jpg",
+        background_color: `#f7f0eb`,
+        theme_color: `#a2466c`,
+        display: `standalone`,
       },
     },
-    `gatsby-plugin-offline`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -40,18 +36,6 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    {
-      resolve: `gatsby-plugin-manifest`,
-      options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
-        start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
-        display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
-      },
-    },
     {
       resolve: "gatsby-plugin-react-svg",
       options: {
