@@ -29,7 +29,8 @@ const IndexPage = () => (
       title="Our Coffees"
       description="Try the John Wayne! It’s an exeperience !"
     />
-    <Board items={ITEMS} title="Our cold coffees" />
+    <Board items={ITEMS} title="Our cold coffees" first={true} />
+    <Board items={ITEMS} title="Our hot coffees" />
   </>
 )
 

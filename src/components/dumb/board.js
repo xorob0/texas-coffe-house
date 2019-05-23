@@ -14,16 +14,20 @@ const Dot = styled.span`
   box-sizing: border-box;
   z-index: 20;
 
-  position: relative;
-  top: 5px;
+
+  position: absolute;
+  top: ${props => (props.top ? "-15" : "130")}px;
   right: -21.7px;
+
+  visibility: ${props => (props.invisible ? "hidden" : "initial")};
 `
 
 const RopeAlone = styled(RopeSVG)`
   height: 150px;
   width: 18px;
-  position: relative;
+  position: absolute;
   top: -3px;
+  left: 0px;
   z-index: 0;
 `
 
@@ -31,12 +35,20 @@ const RopeWrapper = styled.div`
   position: absolute;
   ${props => (props.left ? "left" : "right")}: 10%;
   ${props => !props.left && "transform: scale(-1, 1);"}
+  margin-top: ${props => (props.first ? "0" : "-50")}px;
+`
+
+const RopeContainer = styled.div`
+  position: relative;
 `
 
 const Rope = ({ ...props }) => (
   <RopeWrapper {...props}>
-    <Dot />
+  <RopeContainer {...props}>
+    <Dot {...props} />
+    <Dot {...props} top invisible={props.first} />
     <RopeAlone />
+	</RopeContainer>
   </RopeWrapper>
 )
 
@@ -50,7 +62,7 @@ const BlackBoard = styled.div`
   box-shadow: 2px 2px 2px rgba(255, 255, 255, 0.85),
     inset 2px 2px 2px rgba(255, 255, 255, 0.85);
   margin: 10px;
-  margin-top: 100px;
+  margin-top: ${props => (props.first ? "100" : "50")}px;
   padding: 40px;
   padding-top: 70px;
 `
@@ -69,64 +81,62 @@ const ListWrapper = styled.ul`
   list-style-type: none;
   margin: 0;
   padding: 0;
-	display: flex;
-flex-wrap: wrap;
-justify-content: space-evenly;
-align-items: center;
-align-content: space-evenly;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  align-content: space-evenly;
 `
 
 const ItemWrapper = styled.li`
- max-width: 1000px;
- min-width: 500px;
- display: flex;
-flex-direction: row;
-margin: 50px;
-justify-content: space-between;
-align-items: center;
-align-content: space-between;
+  max-width: 1000px;
+  min-width: 500px;
+  display: flex;
+  flex-direction: row;
+  margin: 50px;
+  justify-content: space-between;
+  align-items: center;
+  align-content: space-between;
 `
 const ItemText = styled.p`
-	font-family: Amatic SC;
-	font-style: normal;
-	font-weight: normal;
-	margin:10px;
+  font-family: Amatic SC;
+  font-style: normal;
+  font-weight: normal;
+  margin: 10px;
 
-	color: #FFFFFF;
+  color: #ffffff;
 `
 const ItemName = styled(ItemText)`
-	font-size: 48px;
-	line-height: 60px;
-	left:0px;
-	text-align: left;
+  font-size: 48px;
+  line-height: 60px;
+  left: 0px;
+  text-align: left;
 `
 const ItemDescription = styled(ItemText)`
-	font-size: 36px;
-	line-height: 45px;
-	text-align: left;
-	padding-left: 10px;
-
+  font-size: 36px;
+  line-height: 45px;
+  text-align: left;
+  padding-left: 10px;
 `
 const ItemPrice = styled(ItemText)`
-	font-size: 36px;
-	line-height: 45px;
+  font-size: 36px;
+  line-height: 45px;
 `
 
 const Flex = styled.div`
- display: flex;
-flex-direction: column;
-justify-content: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 `
 
-
 const Item = ({ name, description, price }) => (
-	<ItemWrapper>
-		<Flex>
-			<ItemName>{name}</ItemName>
-			<ItemDescription>{description}</ItemDescription>
-		</Flex>
-		<ItemPrice>€{price}</ItemPrice>
-	</ItemWrapper>
+  <ItemWrapper>
+    <Flex>
+      <ItemName>{name}</ItemName>
+      <ItemDescription>{description}</ItemDescription>
+    </Flex>
+    <ItemPrice>€{price}</ItemPrice>
+  </ItemWrapper>
 )
 
 const ItemList = ({ items }) => (
@@ -141,20 +151,19 @@ const ItemList = ({ items }) => (
     ))}
   </ListWrapper>
 )
-const Ropes = () => (
+const Ropes = ({ ...props }) => (
   <Wrapper>
-    <Rope left />
-    <Rope />
+    <Rope {...props} left />
+    <Rope {...props} />
   </Wrapper>
 )
 
 export const Board = ({ children, title, items, ...props }) => (
   <>
-    <Ropes />
+    <Ropes {...props} />
     <BlackBoard {...props}>
       <Title>{title}</Title>
-			<ItemList items={items}/>
-
+      <ItemList items={items} />
     </BlackBoard>
   </>
 )
