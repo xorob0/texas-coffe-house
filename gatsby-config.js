@@ -9,17 +9,21 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-styled-components`,
-    `gatsby-plugin-offline`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: "Texas Coffee House Fidelity",
+        short_name: "Texas Cofee House",
+        description:
+          "The app used to manages your fidelity points at the Texas Coffee House, in Mons, Belgium",
         start_url: "/",
         background_color: `#f7f0eb`,
         theme_color: `#a2466c`,
         display: `standalone`,
+        icon: "src/images/icon.jpg",
       },
     },
+    `gatsby-plugin-offline`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
