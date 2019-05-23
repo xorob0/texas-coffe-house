@@ -25,7 +25,7 @@ const ITEMS = [
 ]
 
 const IndexPage = () => (
-  <>
+  <div id="main">
     <Helmet title="Texas Coffee House - Our Coffees" defer={false}>
       <html lang="en-us" />
       <meta
@@ -43,7 +43,7 @@ const IndexPage = () => (
     />
     <Board items={ITEMS} title="Our cold coffees" first={true} />
     <Board items={ITEMS} title="Our hot coffees" />
-  </>
+  </div>
 )
 
 export default IndexPage

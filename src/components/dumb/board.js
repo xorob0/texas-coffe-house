@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import styled from "styled-components"
 
 import RopeSVG from "../../images/rope.svg"
@@ -14,7 +14,6 @@ const Dot = styled.span`
   box-sizing: border-box;
   z-index: 20;
 
-
   position: absolute;
   top: ${props => (props.top ? "-15" : "130")}px;
   right: -21.7px;
@@ -28,7 +27,7 @@ const RopeAlone = styled(RopeSVG)`
   position: absolute;
   top: -3px;
   left: 0px;
-  z-index: 0;
+  z-index: 10;
 `
 
 const RopeWrapper = styled.div`
@@ -40,15 +39,16 @@ const RopeWrapper = styled.div`
 
 const RopeContainer = styled.div`
   position: relative;
+  z-index: 10;
 `
 
 const Rope = ({ ...props }) => (
   <RopeWrapper {...props}>
-  <RopeContainer {...props}>
-    <Dot {...props} />
-    <Dot {...props} top invisible={props.first} />
-    <RopeAlone />
-	</RopeContainer>
+    <RopeContainer {...props}>
+      <Dot {...props} />
+      <Dot {...props} top invisible={props.first} />
+      <RopeAlone />
+    </RopeContainer>
   </RopeWrapper>
 )
 
@@ -91,8 +91,14 @@ const ListWrapper = styled.ul`
 const ItemWrapper = styled.li`
   max-width: 1000px;
   min-width: 500px;
+  @media (max-width: 1300px) {
+    min-width: 400px;
+  }
   display: flex;
   flex-direction: row;
+  @media (max-width: 450px) {
+    flex-direction: column;
+  }
   margin: 50px;
   justify-content: space-between;
   align-items: center;
