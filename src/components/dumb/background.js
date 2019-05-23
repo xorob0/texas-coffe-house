@@ -14,28 +14,26 @@ const BackgroundImageWrapper = styled(BackgroundImage)`
   align-content: center;
 `
 
-export const Background = ({ children, path, ...props }) => {
-  return (
-    <StaticQuery
-      query={graphql`
-        query {
-          desktop: file(relativePath: { eq: "background.jpg" }) {
-            childImageSharp {
-              fluid(quality: 90, maxWidth: 4160) {
-                ...GatsbyImageSharpFluid_withWebp
-              }
+export const Background = ({ children, path, ...props }) => (
+  <StaticQuery
+    query={graphql`
+      query {
+        desktop: file(relativePath: { eq: "background.jpg" }) {
+          childImageSharp {
+            fluid(quality: 90, maxWidth: 4160) {
+              ...GatsbyImageSharpFluid_withWebp
             }
           }
         }
-      `}
-      render={data => {
-        const imageData = data.desktop.childImageSharp.fluid
-        return (
-          <BackgroundImageWrapper fluid={imageData} {...props}>
-            {children}
-          </BackgroundImageWrapper>
-        )
-      }}
-    />
-  )
-}
+      }
+    `}
+    render={data => {
+      const imageData = data.desktop.childImageSharp.fluid
+      return (
+        <BackgroundImageWrapper fluid={imageData} {...props}>
+          {children}
+        </BackgroundImageWrapper>
+      )
+    }}
+  />
+)
