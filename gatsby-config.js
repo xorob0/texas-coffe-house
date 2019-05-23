@@ -9,7 +9,28 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-styled-components`,
-    `gatsby-plugin-manifest`,
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: "Texas Coffee House Fidelity",
+        short_name: "Texas Cofee House",
+        description:
+          "The app used to manages your fidelity points at the Texas Coffee House, in Mons, Belgium",
+        start_url: "/",
+        background_color: "white",
+        theme_color: "brown",
+        display: "standalone",
+        icon: "src/images/icon.jpg",
+        crossOrigin: `use-credentials`,
+        related_applications: [
+          {
+            platform: "play",
+            url:
+              "https://play.google.com/store/apps/details?id=cheeaun.hackerweb",
+          },
+        ],
+      },
+    },
     `gatsby-plugin-offline`,
     {
       resolve: `gatsby-source-filesystem`,
