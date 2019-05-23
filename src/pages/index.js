@@ -1,8 +1,10 @@
 import React from "react"
-import { Link } from "gatsby"
 
 import { Welcome } from "../components/dumb/welcome"
 import { Quote } from "../components/dumb/quote"
+import { Preview } from "../components/dumb/preview"
+
+import { COFFEE, FOOD, FIDELITY } from "../constants/paths"
 
 const IndexPage = () => (
   <>
@@ -15,6 +17,9 @@ const IndexPage = () => (
       text="The best coffee in town and the best John Wayne in the world"
       author="Tim Toum"
     />
+    <Preview text="See our coffees" path={COFFEE} />
+    <Preview text="See our food" path={FOOD} />
+    <Preview text="Go to the fidelity app" path={FIDELITY} />
   </>
 )
 
