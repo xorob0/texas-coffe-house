@@ -128,7 +128,6 @@ const _Menu = ({ items, small }) => {
         </>
       ) : (
         <Wrapper>
-          <button onClick={() => setClicked(true)}>test</button>
           <List>
             {items.map(item => (
               <Link
