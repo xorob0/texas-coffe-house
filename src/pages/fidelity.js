@@ -12,7 +12,7 @@ const IndexPage = () => {
     e.preventDefault()
     console.log(firebase)
     const itemsRef = firebase.database().ref(user)
-    itemsRef.update(points)
+    itemsRef.update({ points })
     console.log(itemsRef)
   }
 
