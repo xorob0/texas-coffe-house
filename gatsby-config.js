@@ -1,3 +1,4 @@
+// TODO: gpdr
 //TODO: add icons
 //TODO: PWA adaptation
 //TODO: Vector preview for images lazy loading

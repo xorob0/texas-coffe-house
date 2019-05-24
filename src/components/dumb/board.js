@@ -57,7 +57,7 @@ const Wrapper = styled.div`
   width: 100%;
 `
 
-const BlackBoard = styled.div`
+const BlackBoardAlone = styled.div`
   background: #303030;
   box-shadow: 2px 2px 2px rgba(255, 255, 255, 0.85),
     inset 2px 2px 2px rgba(255, 255, 255, 0.85);
@@ -167,9 +167,15 @@ const Ropes = ({ ...props }) => (
   </Wrapper>
 )
 
-export const Board = ({ children, title, items, ...props }) => (
+export const BlackBoard = ({ children, ...props }) => (
   <>
     <Ropes {...props} />
+    <BlackBoardAlone {...props}>{children}</BlackBoardAlone>
+  </>
+)
+
+export const Board = ({ children, title, items, ...props }) => (
+  <>
     <BlackBoard {...props}>
       <Title>{title}</Title>
       <ItemList items={items} />
