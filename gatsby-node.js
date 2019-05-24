@@ -11,7 +11,7 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
       module: {
         rules: [
           {
-            test: /tiny-slider-react/,
+            test: /firebase/,
             use: loaders.null(),
           },
         ],
