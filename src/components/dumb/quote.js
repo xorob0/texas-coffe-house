@@ -31,6 +31,7 @@ const Author = styled.p`
   color: #555555;
 `
 
+//TODO externalize
 const capitalizeFirstLetter = string =>
   string.charAt(0).toUpperCase() + string.slice(1)
 

@@ -6,7 +6,6 @@ import BackgroundImage from "gatsby-background-image"
 
 const BackgroundImageWrapper = styled(BackgroundImage)`
   height: 100vh;
-  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -30,7 +29,12 @@ export const Background = ({ children, path, ...props }) => (
     render={data => {
       const imageData = data.desktop.childImageSharp.fluid
       return (
-        <BackgroundImageWrapper fadeIn="soft" fluid={imageData} {...props}>
+        <BackgroundImageWrapper
+          loading="eager"
+          fadeIn="soft"
+          fluid={imageData}
+          {...props}
+        >
           {children}
         </BackgroundImageWrapper>
       )

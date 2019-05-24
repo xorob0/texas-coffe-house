@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet"
 import { Welcome } from "../components/dumb/welcome"
 import { Quote } from "../components/dumb/quote"
 import { Preview } from "../components/dumb/preview"
+import { Footer } from "../components/dumb/footer"
 
 import { COFFEE, FOOD, FIDELITY } from "../constants/paths"
 
@@ -32,6 +33,7 @@ const IndexPage = () => (
     <Preview text="See our coffees" path={COFFEE} />
     <Preview text="See our food" path={FOOD} />
     <Preview text="Go to the fidelity app" path={FIDELITY} />
+    <Footer />
   </>
 )
 
