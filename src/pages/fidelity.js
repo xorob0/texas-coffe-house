@@ -2,6 +2,8 @@ import React, { useState } from "react"
 import { Helmet } from "react-helmet"
 import firebase from "../firebase.js"
 
+import UserContext from "../userContext"
+
 import { BlackBoard } from "../components/dumb/board"
 
 const IndexPage = () => {
@@ -37,7 +39,9 @@ const IndexPage = () => {
         />
       </Helmet>
       <BlackBoard first={true}>
-        <h2>{points}</h2>
+        <UserContext.Consumer>
+          {userContext => <h2>{userContext.user.displayName}</h2>}
+        </UserContext.Consumer>
         <form onSubmit={handleSubmit}>
           <input
             type="text"
