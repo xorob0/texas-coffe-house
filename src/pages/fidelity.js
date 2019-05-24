@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import { Helmet } from "react-helmet"
 import firebase from "../firebase.js"
 
@@ -8,22 +8,22 @@ import { BlackBoard } from "../components/dumb/board"
 
 const IndexPage = () => {
   const [points, setPoints] = useState(0)
-  const user = "xorob0"
+  const { user } = useContext(UserContext)
 
   const handleSubmit = e => {
     e.preventDefault()
     console.log(firebase)
-    const itemsRef = firebase.database().ref(user)
+    const itemsRef = firebase.database().ref(user.uid)
     itemsRef.update({ points })
     console.log(itemsRef)
   }
 
   const update = () => {
-    const itemsRef = firebase.database().ref()
-    itemsRef.on("value", snapshot => {
-      setPoints(snapshot.val())
-    })
+    const itemsRef = firebase.database().ref(user.uid)
+    itemsRef.on("value", snapshot => setPoints(snapshot.val().points))
   }
+
+  useEffect(() => update())
 
   return (
     <>
@@ -39,9 +39,7 @@ const IndexPage = () => {
         />
       </Helmet>
       <BlackBoard first={true}>
-        <UserContext.Consumer>
-          {userContext => <h2>{userContext.user.displayName}</h2>}
-        </UserContext.Consumer>
+        <h2>{user.displayName}</h2>
         <form onSubmit={handleSubmit}>
           <input
             type="text"
