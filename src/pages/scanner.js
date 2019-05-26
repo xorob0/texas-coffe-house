@@ -1,7 +1,9 @@
+//TODO tips
 import React, { useState, useEffect, useContext } from "react"
 import { navigate } from "gatsby"
 import { Helmet } from "react-helmet"
 import firebase from "../firebase.js"
+import QrReader from "react-qr-reader"
 
 import UserContext from "../userContext"
 
@@ -9,26 +11,31 @@ import { BlackBoard } from "../components/dumb/board"
 import { QRCode } from "../components/QRCode"
 
 const IndexPage = () => {
+  const [clientUID, setClientUID] = useState(0)
   const [points, setPoints] = useState(0)
+  const [add, setAdd] = useState(true)
+  const [ok, setOk] = useState(false)
   const { user } = useContext(UserContext)
 
   const handleSubmit = e => {
     e.preventDefault()
-    console.log(firebase)
-    const itemsRef = firebase.database().ref(user.uid)
-    itemsRef.update({ points })
+    total = add ? getPoints(clientUID) + points : getPoints() - points
+    const itemsRef = firebase.database().ref(clientUID)
+    itemsRef.update({ total })
     console.log(itemsRef)
-  }
-
-  const update = () => {
-    const itemsRef = firebase.database().ref(user.uid)
-    itemsRef.on("value", snapshot => setPoints(snapshot.val().points))
+    setOk(true)
   }
 
   useEffect(() => {
+    //TODO: test uid admin
     !user.uid && navigate("/login/")
     update()
   })
+
+  const getPoints = uid => {
+    const itemsRef = firebase.database().ref(uid)
+    return itemsRef.on("value", snapshot => snapshot.val().points)
+  }
 
   return (
     <>
@@ -43,7 +50,32 @@ const IndexPage = () => {
           content="coffee, cafe, waffles, food, mons, belgium, bergen, belgique"
         />
       </Helmet>
-      <BlackBoard first={true} />
+
+      <BlackBoard first={true}>
+        {ok ? (
+          <QrReader
+            delay={300}
+            onScan={data => setClientUID(data)}
+            style={{ width: "100%" }}
+          />
+        ) : (
+          <>
+            <form onSubmit={handleSubmit}>
+              <input
+                type="number"
+                name="points"
+                placeholder={`How many points to ${add ? "add" : "remove"} ?`}
+                onChange={({ target: { value } }) => setPoints(value)}
+                value={points}
+              />
+              <button onClick={() => handleSubmit()}>OK</button>
+            </form>
+            <button onClick={() => setAdd(!add)}>
+              {add ? "REMOVE" : "ADD"} POINTS{" "}
+            </button>
+          </>
+        )}
+      </BlackBoard>
     </>
   )
 }

@@ -11,17 +11,15 @@ const IndexPage = () => {
   const [points, setPoints] = useState(0)
   const { user } = useContext(UserContext)
 
+  const ref = firebase.database().ref(user.uid)
+
   const handleSubmit = e => {
     e.preventDefault()
-    console.log(firebase)
-    const itemsRef = firebase.database().ref(user.uid)
-    itemsRef.update({ points })
-    console.log(itemsRef)
+    ref.update({ points })
   }
 
   const update = () => {
-    const itemsRef = firebase.database().ref(user.uid)
-    itemsRef.on("value", snapshot => setPoints(snapshot.val().points))
+    ref.on("value", snapshot => setPoints(snapshot.val().points))
   }
 
   useEffect(() => update())
@@ -41,16 +39,6 @@ const IndexPage = () => {
       </Helmet>
       <BlackBoard first={true}>
         <h2>{user.displayName}</h2>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="points"
-            placeholder="How many points do you want?"
-            onChange={({ target: { value } }) => setPoints(value)}
-            value={points}
-          />
-          <button>Change points</button>
-        </form>
         <QRCode value={user.uid} />
         <button onClick={() => update()}>update points</button>
       </BlackBoard>
