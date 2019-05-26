@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react"
+import { navigate } from "gatsby"
 import { Helmet } from "react-helmet"
 import firebase from "../firebase.js"
 
@@ -24,7 +25,10 @@ const IndexPage = () => {
     itemsRef.on("value", snapshot => setPoints(snapshot.val().points))
   }
 
-  useEffect(() => update())
+  useEffect(() => {
+    !user.uid && navigate("/login/")
+    update()
+  })
 
   return (
     <>
@@ -39,21 +43,7 @@ const IndexPage = () => {
           content="coffee, cafe, waffles, food, mons, belgium, bergen, belgique"
         />
       </Helmet>
-      <BlackBoard first={true}>
-        <h2>{user.displayName}</h2>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="points"
-            placeholder="How many points do you want?"
-            onChange={({ target: { value } }) => setPoints(value)}
-            value={points}
-          />
-          <button>Change points</button>
-        </form>
-        <QRCode value={user.uid} />
-        <button onClick={() => update()}>update points</button>
-      </BlackBoard>
+      <BlackBoard first={true} />
     </>
   )
 }
