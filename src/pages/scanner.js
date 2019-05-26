@@ -8,7 +8,6 @@ import QrReader from "react-qr-reader"
 import UserContext from "../userContext"
 
 import { BlackBoard } from "../components/dumb/board"
-import { QRCode } from "../components/QRCode"
 
 const IndexPage = () => {
   const [clientUID, setClientUID] = useState(0)
@@ -19,7 +18,7 @@ const IndexPage = () => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    total = add ? getPoints(clientUID) + points : getPoints() - points
+    const total = add ? getPoints(clientUID) + points : getPoints() - points
     const itemsRef = firebase.database().ref(clientUID)
     itemsRef.update({ total })
     console.log(itemsRef)
@@ -29,7 +28,6 @@ const IndexPage = () => {
   useEffect(() => {
     //TODO: test uid admin
     !user.uid && navigate("/login/")
-    update()
   })
 
   const getPoints = uid => {
