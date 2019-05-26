@@ -4,30 +4,30 @@ import { navigate } from "gatsby"
 import { Helmet } from "react-helmet"
 import firebase from "../firebase.js"
 import loadable from "@loadable/component"
-const QrReader = loadable(() => import("react-qr-reader"))
 
 import UserContext from "../userContext"
 
 import { BlackBoard } from "../components/dumb/board"
 
+const QrReader = loadable(() => import("react-qr-reader"))
+
 const IndexPage = () => {
-  const [clientUID, setClientUID] = useState(0)
   const [points, setPoints] = useState(0)
   const [add, setAdd] = useState(true)
   const [ok, setOk] = useState(false)
   const { user } = useContext(UserContext)
 
-  const handleSubmit = e => {
-    e.preventDefault()
-    const total = add ? getPoints(clientUID) + points : getPoints() - points
-    const itemsRef = firebase.database().ref(clientUID)
+  const updatePoints = uid => {
+    const total = add ? getPoints(uid) + points : getPoints() - points
+    const itemsRef = firebase.database().ref(uid)
     itemsRef.update({ total })
-    console.log(itemsRef)
-    setOk(true)
+    alert("done")
+    setOk(false)
   }
 
   useEffect(() => {
     //TODO: test uid admin
+    //TODO: redirect last page
     !user.uid && navigate("/login/")
   })
 
@@ -36,6 +36,7 @@ const IndexPage = () => {
     return itemsRef.on("value", snapshot => snapshot.val().points)
   }
 
+  // onScan={data => updatePoints(data)}
   return (
     <>
       <Helmet title="Texas Coffee House - Our Food" defer={false}>
@@ -54,12 +55,12 @@ const IndexPage = () => {
         {ok ? (
           <QrReader
             delay={300}
-            onScan={data => setClientUID(data)}
+            onScan={data => updatePoints(data)}
             style={{ width: "100%" }}
           />
         ) : (
           <>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={() => setOk(true)}>
               <input
                 type="number"
                 name="points"
@@ -67,7 +68,7 @@ const IndexPage = () => {
                 onChange={({ target: { value } }) => setPoints(value)}
                 value={points}
               />
-              <button onClick={() => handleSubmit()}>OK</button>
+              <button>OK</button>
             </form>
             <button onClick={() => setAdd(!add)}>
               {add ? "REMOVE" : "ADD"} POINTS{" "}
