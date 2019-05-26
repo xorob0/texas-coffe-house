@@ -11,14 +11,14 @@ const IndexPage = () => {
   const [points, setPoints] = useState(0)
   const { user } = useContext(UserContext)
 
-  const ref = firebase.database().ref(user.uid)
-
   const handleSubmit = e => {
     e.preventDefault()
+    const ref = firebase.database().ref(user.uid)
     ref.update({ points })
   }
 
   const update = () => {
+    const ref = firebase.database().ref(user.uid)
     ref.on("value", snapshot => setPoints(snapshot.val().points))
   }
 

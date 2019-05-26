@@ -6,6 +6,7 @@
   "author": "Timothée Simon (xorob0@posteo.net)",
   "dependencies": {
     "@animated-burgers/burger-arrow": "^1.1.2",
+    "@loadable/component": "^5.10.1",
     "babel-plugin-styled-components": "^1.10.0",
     "classnames": "^2.2.6",
     "firebase": "^6.0.4",

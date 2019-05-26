@@ -3,7 +3,8 @@ import React, { useState, useEffect, useContext } from "react"
 import { navigate } from "gatsby"
 import { Helmet } from "react-helmet"
 import firebase from "../firebase.js"
-import QrReader from "react-qr-reader"
+import loadable from "@loadable/component"
+const QrReader = loadable(() => import("react-qr-reader"))
 
 import UserContext from "../userContext"
 
