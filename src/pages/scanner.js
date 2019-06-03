@@ -11,6 +11,9 @@ import { BlackBoard } from "../components/dumb/board"
 
 const QrReader = loadable(() => import("react-qr-reader"))
 
+const addSub = (a, b, addition = true) =>
+  addition ? parseInt(a) + parseInt(b) : parseInt(a) - parseInt(b)
+
 const IndexPage = () => {
   const [points, setPoints] = useState(0)
   const [add, setAdd] = useState(true)
@@ -18,25 +21,24 @@ const IndexPage = () => {
   const { user } = useContext(UserContext)
 
   const updatePoints = uid => {
-    const total = add ? getPoints(uid) + points : getPoints() - points
-    const itemsRef = firebase.database().ref(uid)
-    itemsRef.update({ total })
-    alert("done")
     setOk(false)
+
+    const ref = firebase.database().ref(uid)
+    ref
+      .once("value")
+      .then(snapshot => addSub(snapshot.val().total, points, add))
+      .then(total => ref.update({ total }))
   }
 
   useEffect(() => {
     //TODO: test uid admin
     //TODO: redirect last page
+    //TODO: backup firebase db
+    // TODO : Generalise redirect
+    // TODO : Generalise Helmet
     !user.uid && navigate("/login/")
   })
 
-  const getPoints = uid => {
-    const itemsRef = firebase.database().ref(uid)
-    return itemsRef.on("value", snapshot => snapshot.val().points)
-  }
-
-  // onScan={data => updatePoints(data)}
   return (
     <>
       <Helmet title="Texas Coffee House - Our Food" defer={false}>
@@ -55,7 +57,7 @@ const IndexPage = () => {
         {ok ? (
           <QrReader
             delay={300}
-            onScan={data => updatePoints(data)}
+            onScan={data => data && updatePoints(data)}
             style={{ width: "100%" }}
           />
         ) : (
@@ -65,7 +67,7 @@ const IndexPage = () => {
                 type="number"
                 name="points"
                 placeholder={`How many points to ${add ? "add" : "remove"} ?`}
-                onChange={({ target: { value } }) => setPoints(value)}
+                onChange={({ target: { value } }) => setPoints(parseInt(value))}
                 value={points}
               />
               <button>OK</button>
