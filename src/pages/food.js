@@ -1,6 +1,7 @@
 import React from "react"
 import { Helmet } from "react-helmet"
 
+import Layout from "../components/layout"
 import { Welcome } from "../components/dumb/welcome"
 import { Board } from "../components/dumb/board"
 
@@ -24,8 +25,8 @@ const ITEMS = [
   { name: "John Wayne", description: "When Hot meet Cold", price: "3,5" },
 ]
 
-const IndexPage = () => (
-  <>
+const IndexPage = ({ location }) => (
+  <Layout location={location}>
     <Helmet title="Texas Coffee House - Our Food" defer={false}>
       <html lang="en-us" />
       <meta
@@ -44,7 +45,7 @@ const IndexPage = () => (
     <Board items={ITEMS} title="Our pastery" first={true} />
     <Board items={ITEMS} title="Our superbowl" />
     <Board items={ITEMS} title="Our waffles" />
-  </>
+  </Layout>
 )
 
 export default IndexPage

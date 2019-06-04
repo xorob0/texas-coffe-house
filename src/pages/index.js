@@ -1,26 +1,14 @@
 import React from "react"
-import { Helmet } from "react-helmet"
 
+import Layout from "../components/layout"
 import { Welcome } from "../components/dumb/welcome"
 import { Quote } from "../components/dumb/quote"
 import { Preview } from "../components/dumb/preview"
-import { Footer } from "../components/dumb/footer"
 
 import { COFFEE, FOOD, FIDELITY } from "../constants/paths"
 
-const IndexPage = () => (
-  <>
-    <Helmet title="Texas Coffee House" defer={false}>
-      <html lang="en-us" />
-      <meta
-        name="description"
-        content="The Website of the Texas Coffe House, a café in Mons, Belgium"
-      />
-      <meta
-        name="keywords"
-        content="coffee, cafe, waffles, food, mons, belgium, bergen, belgique"
-      />
-    </Helmet>
+const IndexPage = ({ location }) => (
+  <Layout location={location}>
     <Welcome
       title="Texas"
       subtitle="- Coffee House -"
@@ -33,8 +21,7 @@ const IndexPage = () => (
     <Preview text="See our coffees" path={COFFEE} />
     <Preview text="See our food" path={FOOD} />
     <Preview text="Go to the fidelity app" path={FIDELITY} />
-    <Footer />
-  </>
+  </Layout>
 )
 
 export default IndexPage

@@ -4,6 +4,7 @@ import firebase from "../utils/firebase"
 
 import UserContext from "../userContext"
 
+import Layout from "../components/layout"
 import { BlackBoard } from "../components/dumb/board"
 import { QRCode } from "../components/QRCode"
 import { PrivateRoute } from "../components/privateRoute"
@@ -22,25 +23,27 @@ const IndexPage = ({ location }) => {
   }, [points])
 
   return (
-    <PrivateRoute location={location}>
-      <Helmet title="Texas Coffee House - Our Food" defer={false}>
-        <html lang="en-us" />
-        <meta
-          name="description"
-          content="The Website of the Texas Coffe House, a café in Mons, Belgium"
-        />
-        <meta
-          name="keywords"
-          content="coffee, cafe, waffles, food, mons, belgium, bergen, belgique"
-        />
-      </Helmet>
-      <BlackBoard first={true}>
-        <h2>{user.displayName}</h2>
-        <h2>{points}</h2>
-        <h2>{user.uid}</h2>
-        <QRCode value={user.uid} />
-      </BlackBoard>
-    </PrivateRoute>
+    <Layout location={location}>
+      <PrivateRoute location={location}>
+        <Helmet title="Texas Coffee House - Our Food" defer={false}>
+          <html lang="en-us" />
+          <meta
+            name="description"
+            content="The Website of the Texas Coffe House, a café in Mons, Belgium"
+          />
+          <meta
+            name="keywords"
+            content="coffee, cafe, waffles, food, mons, belgium, bergen, belgique"
+          />
+        </Helmet>
+        <BlackBoard first={true}>
+          <h2>{user.displayName}</h2>
+          <h2>{points}</h2>
+          <h2>{user.uid}</h2>
+          <QRCode value={user.uid} />
+        </BlackBoard>
+      </PrivateRoute>
+    </Layout>
   )
 }
 

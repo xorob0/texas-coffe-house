@@ -3,6 +3,7 @@ import { navigate } from "gatsby"
 import { auth, googleProvider, facebookProvider } from "../utils/firebase.js"
 
 import UserContext from "../userContext"
+import Layout from "../components/layout"
 
 import { Background } from "../components/dumb/background"
 import { Footer } from "../components/dumb/footer"
@@ -21,7 +22,7 @@ const IndexPage = ({ location }) => {
   )
 
   return (
-    <>
+    <Layout location={location}>
       <Background>
         <LoginButton
           onClick={() =>
@@ -47,7 +48,7 @@ const IndexPage = ({ location }) => {
       </Background>
 
       <Footer />
-    </>
+    </Layout>
   )
 }
 
