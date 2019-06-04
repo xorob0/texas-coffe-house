@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react"
 import { Helmet } from "react-helmet"
-import firebase from "../firebase.js"
+import firebase from "../utils/firebase"
 
 import UserContext from "../userContext"
 
@@ -17,12 +17,6 @@ const IndexPage = () => {
   })
 
   useEffect(() => {
-    navigator.vibrate =
-      navigator.vibrate ||
-      navigator.webkitVibrate ||
-      navigator.mozVibrate ||
-      navigator.msVibrate
-
     navigator.vibrate(200)
   }, [points])
 

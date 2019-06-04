@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useContext } from "react"
 import { navigate } from "gatsby"
 import { Helmet } from "react-helmet"
-import firebase from "../firebase.js"
+import { changePointsUser } from "../utils/firebase.js"
 import loadable from "@loadable/component"
 
 import UserContext from "../userContext"
@@ -10,14 +10,6 @@ import UserContext from "../userContext"
 import { BlackBoard } from "../components/dumb/board"
 
 const QrReader = loadable(() => import("react-qr-reader"))
-
-const numberize = val => {
-  const parsedVal = parseInt(val)
-  return isNaN(parsedVal) ? 0 : parsedVal
-}
-
-const addSub = (a, b, addition = true) =>
-  addition ? numberize(a) + numberize(b) : numberize(a) - numberize(b)
 
 const IndexPage = () => {
   const [points, setPoints] = useState(0)
@@ -27,23 +19,18 @@ const IndexPage = () => {
 
   const updatePoints = uid => {
     setOk(false)
-
-    const ref = firebase.database().ref(uid)
-    ref
-      .once("value")
-      .then(snapshot => addSub(snapshot.val().total, points, add))
-      .then(total => ref.update({ total }))
+    changePointsUser(uid, points, add)
   }
 
+  //TODO common utils for firebase access
+  //TODO: test uid admin
+  //TODO: redirect last page
+  //TODO: backup firebase db
+  // TODO : Generalise redirect
+  // TODO : Generalise Helmet
+  // TODO: Add analytics
+
   useEffect(() => {
-    //TODO: correct onError in the console
-    //TODO common utils for firebase access
-    //TODO: test uid admin
-    //TODO: redirect last page
-    //TODO: backup firebase db
-    // TODO : Generalise redirect
-    // TODO : Generalise Helmet
-    // TODO: Add analytics
     !user.uid && navigate("/login/")
   })
 
@@ -66,6 +53,7 @@ const IndexPage = () => {
           <QrReader
             delay={300}
             onScan={data => data && updatePoints(data)}
+            onError={() => alert("Error")}
             style={{ width: "100%" }}
           />
         ) : (

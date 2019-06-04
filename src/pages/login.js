@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react"
 import { navigate } from "gatsby"
-import { auth, googleProvider, facebookProvider } from "../firebase.js"
+import { auth, googleProvider, facebookProvider } from "../utils/firebase.js"
 
 import UserContext from "../userContext"
 
