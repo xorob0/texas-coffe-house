@@ -31,6 +31,8 @@ const IndexPage = () => {
   }
 
   useEffect(() => {
+    //TODO: correct onError in the console
+    //TODO common utils for firebase access
     //TODO: test uid admin
     //TODO: redirect last page
     //TODO: backup firebase db

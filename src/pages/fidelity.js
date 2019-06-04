@@ -19,8 +19,10 @@ const IndexPage = () => {
 
   const update = () => {
     const ref = firebase.database().ref(user.uid)
-    ref.on("value", snapshot => setPoints(snapshot.val().points))
+    ref.on("value", snapshot => setPoints(snapshot.val().total))
   }
+
+  useEffect(() => window.navigator.vibrate(200), [points])
 
   useEffect(() => update())
 
@@ -39,6 +41,7 @@ const IndexPage = () => {
       </Helmet>
       <BlackBoard first={true}>
         <h2>{user.displayName}</h2>
+        <h2>{points}</h2>
         <QRCode value={user.uid} />
         <button onClick={() => update()}>update points</button>
       </BlackBoard>
