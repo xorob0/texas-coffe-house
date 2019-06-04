@@ -11,20 +11,20 @@ const IndexPage = () => {
   const [points, setPoints] = useState(0)
   const { user } = useContext(UserContext)
 
-  const handleSubmit = e => {
-    e.preventDefault()
-    const ref = firebase.database().ref(user.uid)
-    ref.update({ points })
-  }
-
-  const update = () => {
+  useEffect(() => {
     const ref = firebase.database().ref(user.uid)
     ref.on("value", snapshot => setPoints(snapshot.val().total))
-  }
+  })
 
-  useEffect(() => window.navigator.vibrate(200), [points])
+  useEffect(() => {
+    navigator.vibrate =
+      navigator.vibrate ||
+      navigator.webkitVibrate ||
+      navigator.mozVibrate ||
+      navigator.msVibrate
 
-  useEffect(() => update())
+    navigator.vibrate(200)
+  }, [points])
 
   return (
     <>
@@ -43,7 +43,6 @@ const IndexPage = () => {
         <h2>{user.displayName}</h2>
         <h2>{points}</h2>
         <QRCode value={user.uid} />
-        <button onClick={() => update()}>update points</button>
       </BlackBoard>
     </>
   )
