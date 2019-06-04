@@ -8,11 +8,17 @@ import { Background } from "../components/dumb/background"
 import { Footer } from "../components/dumb/footer"
 import { LoginButton } from "../components/dumb/loginButton"
 
-const IndexPage = () => {
+const IndexPage = ({ location }) => {
   const { user, setUser } = useContext(UserContext)
 
   //TODO use constant
-  useEffect(() => user.uid && navigate("/fidelity/"))
+  useEffect(
+    () =>
+      user.uid &&
+      navigate(
+        location.state.redirectUrl ? location.state.redirectUrl : "/fidelity/"
+      )
+  )
 
   return (
     <>

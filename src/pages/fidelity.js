@@ -6,8 +6,9 @@ import UserContext from "../userContext"
 
 import { BlackBoard } from "../components/dumb/board"
 import { QRCode } from "../components/QRCode"
+import { PrivateRoute } from "../components/privateRoute"
 
-const IndexPage = () => {
+const IndexPage = ({ location }) => {
   const [points, setPoints] = useState(0)
   const { user } = useContext(UserContext)
 
@@ -21,7 +22,7 @@ const IndexPage = () => {
   }, [points])
 
   return (
-    <>
+    <PrivateRoute location={location}>
       <Helmet title="Texas Coffee House - Our Food" defer={false}>
         <html lang="en-us" />
         <meta
@@ -36,9 +37,10 @@ const IndexPage = () => {
       <BlackBoard first={true}>
         <h2>{user.displayName}</h2>
         <h2>{points}</h2>
+        <h2>{user.uid}</h2>
         <QRCode value={user.uid} />
       </BlackBoard>
-    </>
+    </PrivateRoute>
   )
 }
 

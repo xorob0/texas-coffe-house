@@ -16,9 +16,18 @@ export const facebookProvider = new firebase.auth.GoogleAuthProvider()
 export const auth = firebase.auth()
 export const changePointsUser = (uid, points, add) => {
   const ref = firebase.database().ref(uid)
-  ref
-    .once("value")
-    .then(snapshot => addSub(snapshot.val().total, points, add))
-    .then(total => ref.update({ total }))
+  try {
+    ref
+      .once("value")
+      .then(snapshot => addSub(snapshot.val().total, points, add))
+      .then(total => {
+        if (total <= 0) {
+          throw "Not enough points"
+        }
+        ref.update({ total })
+      })
+  } catch (err) {
+    throw err
+  }
 }
 export default firebase

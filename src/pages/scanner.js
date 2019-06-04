@@ -1,41 +1,27 @@
 //TODO tips
-import React, { useState, useEffect, useContext } from "react"
-import { navigate } from "gatsby"
+import React, { useState } from "react"
 import { Helmet } from "react-helmet"
+
 import { changePointsUser } from "../utils/firebase.js"
-import loadable from "@loadable/component"
 
-import UserContext from "../userContext"
-
+import { PrivateRoute } from "../components/privateRoute"
 import { BlackBoard } from "../components/dumb/board"
 
+import loadable from "@loadable/component"
 const QrReader = loadable(() => import("react-qr-reader"))
 
-const IndexPage = () => {
+const IndexPage = ({ location }) => {
   const [points, setPoints] = useState(0)
   const [add, setAdd] = useState(true)
   const [ok, setOk] = useState(false)
-  const { user } = useContext(UserContext)
 
   const updatePoints = uid => {
     setOk(false)
     changePointsUser(uid, points, add)
   }
 
-  //TODO common utils for firebase access
-  //TODO: test uid admin
-  //TODO: redirect last page
-  //TODO: backup firebase db
-  // TODO : Generalise redirect
-  // TODO : Generalise Helmet
-  // TODO: Add analytics
-
-  useEffect(() => {
-    !user.uid && navigate("/login/")
-  })
-
   return (
-    <>
+    <PrivateRoute admin={true} location={location}>
       <Helmet title="Texas Coffee House - Our Food" defer={false}>
         <html lang="en-us" />
         <meta
@@ -60,11 +46,12 @@ const IndexPage = () => {
           <>
             <form onSubmit={() => setOk(true)}>
               <input
-                type="number"
                 name="points"
                 placeholder={`How many points to ${add ? "add" : "remove"} ?`}
-                onChange={({ target: { value } }) => setPoints(parseInt(value))}
                 value={points}
+                onChange={({ target: { value } }) =>
+                  isFinite(value) && setPoints(value)
+                }
               />
               <button>OK</button>
             </form>
@@ -74,7 +61,7 @@ const IndexPage = () => {
           </>
         )}
       </BlackBoard>
-    </>
+    </PrivateRoute>
   )
 }
 
