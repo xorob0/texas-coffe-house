@@ -3,7 +3,13 @@ import styled from "styled-components"
 import _QRCode from "qrcode.react"
 
 const StyledQRCode = styled(_QRCode)``
+const Wrapper = styled.div`
+  background: white;
+  padding: 10px;
+`
 
 export const QRCode = ({ ...props }) => (
-  <StyledQRCode rendreAs="svg" {...props} />
+  <Wrapper>
+    <StyledQRCode rendreAs="svg" {...props} />
+  </Wrapper>
 )
