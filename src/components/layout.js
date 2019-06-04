@@ -6,8 +6,8 @@ import { Footer } from "../components/dumb/footer"
 import { PATHS } from "../constants/paths"
 
 const Layout = ({ children, location }) => {
-  // const path = PATHS.filter(path => path.path === location.pathname)[0]
-  const name = false ? ` - test` : ""
+  const path = PATHS.filter(path => path.path === location.pathname)[0]
+  const name = path ? ` - ${path.text}` : ""
 
   return (
     <>
