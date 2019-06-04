@@ -11,8 +11,13 @@ import { BlackBoard } from "../components/dumb/board"
 
 const QrReader = loadable(() => import("react-qr-reader"))
 
+const numberize = val => {
+  const parsedVal = parseInt(val)
+  return isNaN(parsedVal) ? 0 : parsedVal
+}
+
 const addSub = (a, b, addition = true) =>
-  addition ? parseInt(a) + parseInt(b) : parseInt(a) - parseInt(b)
+  addition ? numberize(a) + numberize(b) : numberize(a) - numberize(b)
 
 const IndexPage = () => {
   const [points, setPoints] = useState(0)
@@ -38,6 +43,7 @@ const IndexPage = () => {
     //TODO: backup firebase db
     // TODO : Generalise redirect
     // TODO : Generalise Helmet
+    // TODO: Add analytics
     !user.uid && navigate("/login/")
   })
 
