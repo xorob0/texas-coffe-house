@@ -3,11 +3,15 @@ import { navigate } from "gatsby"
 
 import UserContext from "../userContext"
 
-export const PrivateRoute = ({ children, admin = false, location }) => {
+export const PrivateRoute = ({
+  children,
+  admin = false,
+  location: { pathname = "/fidelity/" },
+}) => {
   const { user } = useContext(UserContext)
   if (!user.uid) {
     navigate(`/login/`, {
-      state: { redirectUrl: location.pathname },
+      state: { redirectUrl: pathname },
     })
     return null
   }
