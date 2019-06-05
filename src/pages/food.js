@@ -1,59 +1,51 @@
 import React from "react"
-import { StaticQuery, graphql } from "gatsby"
+import { Helmet } from "react-helmet"
 
+import Layout from "../components/layout"
 import { Welcome } from "../components/dumb/welcome"
 import { Board } from "../components/dumb/board"
-import Layout from "../components/layout"
 
-const FoodPage = ({ location, data }) => {
-  const { edges: items } = data.allMarkdownRemark
-  const pasterys = items
-    .map(item => item.node.frontmatter)
-    .filter(item => item.type === "pastery")
-  const superbowls = items
-    .map(item => item.node.frontmatter)
-    .filter(item => item.type === "superbowl")
-  const waffles = items
-    .map(item => item.node.frontmatter)
-    .filter(item => item.type === "waffle")
+const ITEMS = [
+  { name: "John ayne", description: "When Hot meet Cold", price: "3,5" },
+  { name: "John Wayne", description: "When Hot meet Cold", price: "3,5" },
+  { name: "John Wayne", description: "When Hot meet Cold", price: "3,5" },
+  { name: "John Wayne", description: "When Hot meet Cold", price: "3,5" },
+  { name: "John Wayne", description: "When Hot meet Cold", price: "3,5" },
+  { name: "John Wayne", description: "When Hot meet Cold", price: "3,5" },
+  { name: "John Wayne", description: "When Hot meet Cold", price: "3,5" },
+  {
+    name: "John Wayne",
+    description: "When Hot meet ColdWhen Hot meet ColdWhen Hot meet Cold",
+    price: "3,5",
+  },
+  { name: "John Wayne", description: "When Hot meet Cold", price: "3,5" },
+  { name: "John Wayne", description: "When Hot meet Cold", price: "3,5" },
+  { name: "John Wayne", description: "When Hot meet Cold", price: "3,5" },
+  { name: "John Wayne", description: "When Hot meet Cold", price: "3,5" },
+  { name: "John Wayne", description: "When Hot meet Cold", price: "3,5" },
+]
 
-  return (
-    <Layout location={location}>
-      <Welcome
-        title="Our Coffees"
-        description="Try the John Wayne! It’s an exeperience !"
+const IndexPage = ({ location }) => (
+  <Layout location={location}>
+    <Helmet title="Texas Coffee House - Our Food" defer={false}>
+      <html lang="en-us" />
+      <meta
+        name="description"
+        content="The Website of the Texas Coffe House, a café in Mons, Belgium"
       />
-      <Board items={pasterys} title="Our pastery" first={true} />
-      <Board items={superbowls} title="Our superbowl" />
-      <Board items={waffles} title="Our waffles" />
-    </Layout>
-  )
-}
-
-export default location => (
-  <StaticQuery
-    query={graphql`
-      query FoodPageQuery {
-        allMarkdownRemark(
-          sort: { order: DESC, fields: [frontmatter___title] }
-          filter: { frontmatter: { templateKey: { eq: "food" } } }
-        ) {
-          edges {
-            node {
-              excerpt(pruneLength: 40)
-              id
-              frontmatter {
-                title
-                description
-                price
-                templateKey
-                type
-              }
-            }
-          }
-        }
-      }
-    `}
-    render={data => <FoodPage data={data} location={location} />}
-  />
+      <meta
+        name="keywords"
+        content="coffee, cafe, waffles, food, mons, belgium, bergen, belgique"
+      />
+    </Helmet>
+    <Welcome
+      title="Our Coffees"
+      description="Try the John Wayne! It’s an exeperience !"
+    />
+    <Board items={ITEMS} title="Our pastery" first={true} />
+    <Board items={ITEMS} title="Our superbowl" />
+    <Board items={ITEMS} title="Our waffles" />
+  </Layout>
 )
+
+export default IndexPage

@@ -7,6 +7,7 @@ import Layout from "../components/layout"
 
 const CoffeesPage = ({ location, data }) => {
   const { edges: items } = data.allMarkdownRemark
+  console.log("items", items)
   const hotCoffees = items
     .map(item => item.node.frontmatter)
     .filter(item => item.type === "hot")
@@ -28,7 +29,7 @@ const CoffeesPage = ({ location, data }) => {
 export default location => (
   <StaticQuery
     query={graphql`
-      query CoffeePageQuery {
+      query BlogPageQuery {
         allMarkdownRemark(
           sort: { order: DESC, fields: [frontmatter___title] }
           filter: { frontmatter: { templateKey: { eq: "coffee" } } }
@@ -42,7 +43,6 @@ export default location => (
                 description
                 price
                 templateKey
-                type
               }
             }
           }

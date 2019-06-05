@@ -150,6 +150,7 @@ const Item = ({ name, description, price }) => (
 
 const ItemList = ({ items }) => (
   <ListWrapper>
+    {console.log(items)}
     {items.map(item => (
       <Item
         name={item.title}
