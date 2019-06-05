@@ -22,3 +22,5 @@ firebase.initializeApp(config)
 
 const ref = firebase.database().ref("notif")
 ref.on("value", snapshot => alert(snapshot))
+alert("test")
+console.log(ref)
