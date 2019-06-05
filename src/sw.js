@@ -1,6 +1,11 @@
 importScripts("https://www.gstatic.com/firebasejs/4.8.1/firebase-app.js")
 importScripts("https://www.gstatic.com/firebasejs/4.8.1/firebase-messaging.js")
 
+// Required stuff
+importScripts(
+  "https://storage.googleapis.com/workbox-cdn/releases/3.4.1/workbox-sw.js"
+)
+
 workbox.precaching.precacheAndRoute([])
 
 const config = {
