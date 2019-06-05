@@ -23,6 +23,7 @@ module.exports = {
         theme_color: `#996633`,
         display: `standalone`,
         icon: "src/images/icon.jpg",
+        gcm_sender_id: "103953800507",
       },
     },
     `gatsby-plugin-offline`,
