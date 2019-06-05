@@ -6,50 +6,22 @@ media_folder: static/img
 public_folder: /images
  
 collections:
-  - name: "coffees"
-    label: "Coffees"
+  - name: "Food"
+    label: "Food"
+    folder: "src/pages/Food"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    files:    
-      - file: "src/pages/coffees.md"
-        label: "About"
-        name: "about"
-        fields:
+    fields:
           - { label: "Name", name: "name", widget: "string" }
           - { label: "Description", name: "Description", widget: "markdown" }
           - { label: "Price (€)", name: "price", widget: "number" }
-  - name: "blog"
-    label: "Blog"
-    folder: "src/pages/blogs"
+ 
+  - name: "Coffee"
+    label: "Coffee"
+    folder: "src/pages/Coffee"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-      - {
-          label: "Template Key",
-          name: "templateKey",
-          widget: "hidden",
-          default: "single-blog",
-        }
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Publish Date", name: "date", widget: "datetime" }
-      - { label: "Description", name: "description", widget: "text" }
-      - { label: "Body", name: "body", widget: "markdown" }
- 
-  - name: "courses"
-    label: "Courses"
-    folder: "src/pages/courses"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    fields:
-      - {
-          label: "Template Key",
-          name: "templateKey",
-          widget: "hidden",
-          default: "single-course",
-        }
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Publish Date", name: "date", widget: "datetime" }
-      - { label: "Description", name: "description", widget: "text" }
-      - { label: "Body", name: "body", widget: "markdown" }
-      - { label: Image, name: image, widget: image }
- 
+          - { label: "Name", name: "name", widget: "string" }
+          - { label: "Description", name: "Description", widget: "markdown" }
+          - { label: "Price (€)", name: "price", widget: "number" }
