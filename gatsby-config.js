@@ -26,12 +26,7 @@ module.exports = {
       },
     },
     `gatsby-plugin-offline`,
-    {
-      resolve: "gatsby-plugin-sw",
-      options: {
-        swPath: "src/utils/my-service-worker.js", // Default to 'src/sw.js'
-      },
-    },
+    `gatsby-plugin-sw`,
     `gatsby-plugin-netlify-cms`,
     {
       resolve: `gatsby-source-filesystem`,
