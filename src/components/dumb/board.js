@@ -150,9 +150,10 @@ const Item = ({ name, description, price }) => (
 
 const ItemList = ({ items }) => (
   <ListWrapper>
+    {console.log(items)}
     {items.map(item => (
       <Item
-        name={item.name}
+        name={item.title}
         description={item.description}
         price={item.price}
         key={item.name}

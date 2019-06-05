@@ -13,8 +13,14 @@ collections:
     slug: "{{slug}}"
     fields:
           - { label: "Title", name: "title", widget: "string" }
-          - { label: "Description", name: "Description", widget: "markdown" }
+          - { label: "Description", name: "description", widget: "markdown" }
           - { label: "Price (€)", name: "price", widget: "number" }
+          - {
+              label: "Template Key",
+              name: "templateKey",
+              widget: "hidden",
+              default: "food",
+            }
  
   - name: "Coffee"
     label: "Coffee"
@@ -23,8 +29,21 @@ collections:
     slug: "{{slug}}"
     fields:
           - { label: "Title", name: "title", widget: "string" }
-          - { label: "Description", name: "Description", widget: "markdown" }
+          - { label: "Description", name: "description", widget: "markdown" }
           - { label: "Price (€)", name: "price", widget: "number" }
+          - { 
+            label: "Type",
+            name: "type",
+            widget: "select",
+            options: ["hot", "cold"],
+            default: "hot",
+            }
+          - {
+              label: "Template Key",
+              name: "templateKey",
+              widget: "hidden",
+              default: "coffee",
+            }
 
   - name: "Promotion"
     label: "Promotion"
@@ -33,5 +52,11 @@ collections:
     slug: "{{slug}}"
     fields:
           - { label: "Title", name: "title", widget: "string" }
-          - { label: "Description", name: "Description", widget: "markdown" }
+          - { label: "Description", name: "description", widget: "markdown" }
           - { label: "Price (€)", name: "price", widget: "number" }
+          - {
+              label: "Template Key",
+              name: "templateKey",
+              widget: "hidden",
+              default: "promotion",
+            }
