@@ -8,9 +8,11 @@ public_folder: /img
 collections:
   - label: "Pages"
     name: "pages"
+    create: true
     files:
       - label: "Coffee"
         name: "coffee"
+        create: true
         file: "site/content/coffee.yml"
         fields:
           - {label: Title, name: title, widget: string}
@@ -24,6 +26,7 @@ collections:
               - {label: Photo, name: photo, widget: image}
       - label: "Food"
         name: "food"
+        create: true
         file: "site/content/food.yml"
         fields:
           - {label: Title, name: title, widget: string}
