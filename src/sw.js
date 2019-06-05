@@ -1,4 +1,6 @@
-// Required stuff
+importScripts("https://www.gstatic.com/firebasejs/4.8.1/firebase-app.js")
+importScripts("https://www.gstatic.com/firebasejs/4.8.1/firebase-messaging.js")
+
 const config = {
   apiKey: "AIzaSyAF0ua8bIh3SVrRW8jmH2aAEKLby08aDEo",
   authDomain: "texas-64dfd.firebaseapp.com",
@@ -8,13 +10,6 @@ const config = {
   messagingSenderId: "475572786003",
   appId: "1:475572786003:web:1a32ebcfd88047f1",
 }
-
-importScripts(
-  "https://storage.googleapis.com/workbox-cdn/releases/3.4.1/workbox-sw.js"
-)
-
-importScripts("https://www.gstatic.com/firebasejs/4.8.1/firebase-app.js")
-importScripts("https://www.gstatic.com/firebasejs/4.8.1/firebase-messaging.js")
 
 firebase.initializeApp(config)
 
@@ -29,7 +24,6 @@ messaging.setBackgroundMessageHandler(function(payload) {
   var notificationTitle = "Background Message Title"
   var notificationOptions = {
     body: "Background Message body.",
-    icon: "/firebase-logo.png",
   }
 
   return self.registration.showNotification(
