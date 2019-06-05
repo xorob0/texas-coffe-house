@@ -8,9 +8,9 @@ public_folder: /images
 collections:
   - name: "Food"
     label: "Food"
-    folder: "src/content/"
+    folder: "src/content/food/"
     create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    slug: "{{slug}}"
     fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Description", name: "Description", widget: "markdown" }
@@ -18,9 +18,19 @@ collections:
  
   - name: "Coffee"
     label: "Coffee"
-    folder: "src/content/"
+    folder: "src/content/coffees"
     create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    slug: "{{slug}}"
+    fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "Description", widget: "markdown" }
+          - { label: "Price (€)", name: "price", widget: "number" }
+
+  - name: "Promotion"
+    label: "Promotion"
+    folder: "src/content/promotions"
+    create: true
+    slug: "{{slug}}"
     fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Description", name: "Description", widget: "markdown" }
