@@ -1,6 +1,8 @@
 importScripts("https://www.gstatic.com/firebasejs/4.8.1/firebase-app.js")
 importScripts("https://www.gstatic.com/firebasejs/4.8.1/firebase-messaging.js")
 
+workbox.precaching.precacheAndRoute([])
+
 const config = {
   apiKey: "AIzaSyAF0ua8bIh3SVrRW8jmH2aAEKLby08aDEo",
   authDomain: "texas-64dfd.firebaseapp.com",
