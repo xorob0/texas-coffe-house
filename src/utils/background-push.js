@@ -10,4 +10,4 @@ workbox.precaching.precacheAndRoute([])
 const { user } = useContext(UserContext)
 
 const ref = firebase.database().ref(user.uid)
-ref.on("value", snapshot => setPoints(snapshot.val().total))
+ref.on("value", snapshot => console.log(snapshot.val().total))
