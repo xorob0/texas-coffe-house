@@ -12,13 +12,7 @@ collections:
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-          - {
-              label: "Template Key",
-              name: "templateKey",
-              widget: "hidden",
-              default: "food",
-            }
-          - { label: "Name", name: "name", widget: "string" }
+          - { label: "Title", name: "title", widget: "string" }
           - { label: "Description", name: "Description", widget: "markdown" }
           - { label: "Price (€)", name: "price", widget: "number" }
  
@@ -28,12 +22,6 @@ collections:
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-          - {
-              label: "Template Key",
-              name: "templateKey",
-              widget: "hidden",
-              default: "coffee",
-            }
-          - { label: "Name", name: "name", widget: "string" }
+          - { label: "Title", name: "title", widget: "string" }
           - { label: "Description", name: "Description", widget: "markdown" }
           - { label: "Price (€)", name: "price", widget: "number" }
