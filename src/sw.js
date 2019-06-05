@@ -1,4 +1,3 @@
-// In your service worker e.g. src/sw.js
 // Required stuff
 importScripts(
   "https://storage.googleapis.com/workbox-cdn/releases/3.4.1/workbox-sw.js"
@@ -7,7 +6,5 @@ importScripts(
 workbox.precaching.precacheAndRoute([])
 // Another things
 //
-const { user } = useContext(UserContext)
-
-const ref = firebase.database().ref(user.uid)
-ref.on("value", snapshot => console.log(snapshot.val().total))
+const ref = firebase.database().ref("notif")
+ref.on("value", snapshot => console.log("recu"))
