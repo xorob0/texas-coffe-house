@@ -1,27 +1,49 @@
 import React from "react"
-import { Helmet } from "react-helmet"
+import { StaticQuery, graphql } from "gatsby"
 
-import Layout from "../components/layout"
 import { Welcome } from "../components/dumb/welcome"
+import { Board } from "../components/dumb/board"
+import Layout from "../components/layout"
 
-const IndexPage = ({ location }) => (
-  <Layout location={location}>
-    <Helmet title="Texas Coffee House - Promos" defer={false}>
-      <html lang="en-us" />
-      <meta
-        name="description"
-        content="The Website of the Texas Coffe House, a café in Mons, Belgium"
+const PromoPage = ({ location, data }) => {
+  const { edges: items } = data.allMarkdownRemark
+  const promos = items.map(item => item.node.frontmatter)
+
+  return (
+    <Layout location={location}>
+      <Welcome
+        title="Our promotions"
+        description="For broke people wanting the best"
       />
-      <meta
-        name="keywords"
-        content="coffee, cafe, waffles, food, mons, belgium, bergen, belgique"
-      />
-    </Helmet>
-    <Welcome
-      title="Our Coffees"
-      description="Try the John Wayne! It’s an exeperience !"
-    />
-  </Layout>
+      <Board items={promos} title="Today's Promo" first={true} />
+    </Layout>
+  )
+}
+
+export default location => (
+  <StaticQuery
+    query={graphql`
+      query PromoPageQuery {
+        allMarkdownRemark(
+          sort: { order: DESC, fields: [frontmatter___title] }
+          filter: { frontmatter: { templateKey: { eq: "promotion" } } }
+        ) {
+          edges {
+            node {
+              excerpt(pruneLength: 40)
+              id
+              frontmatter {
+                title
+                description
+                price
+                templateKey
+                type
+              }
+            }
+          }
+        }
+      }
+    `}
+    render={data => <PromoPage data={data} location={location} />}
+  />
 )
-
-export default IndexPage
