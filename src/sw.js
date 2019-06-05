@@ -20,25 +20,5 @@ const config = {
 
 firebase.initializeApp(config)
 
-const messaging = firebase.messaging()
-
-messaging.usePublicVapidKey(
-  "BFBYoAimMiEAZxHYMepcJwnjnjtAZrncRVcSMywx7i-kToZk-er386cAC1yuYEqk2BtOCeXAVlV792Ojcfv4x0M"
-)
-
-messaging.setBackgroundMessageHandler(function(payload) {
-  console.log(
-    "[firebase-messaging-sw.js] Received background message ",
-    payload
-  )
-  // Customize notification here
-  var notificationTitle = "Background Message Title"
-  var notificationOptions = {
-    body: "Background Message body.",
-  }
-
-  return self.registration.showNotification(
-    notificationTitle,
-    notificationOptions
-  )
-})
+const ref = firebase.database().ref("notif")
+ref.on("value", snapshot => console.log(snapshot)
