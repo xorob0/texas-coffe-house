@@ -6,34 +6,24 @@ media_folder: static/img
 public_folder: /img
 
 collections:
-  - label: "Pages"
-    name: "pages"
+  - label: "Coffees"
+    name: "coffees"
     create: true
-    files:
-      - label: "Coffee"
-        name: "coffee"
-        create: true
-        file: "site/content/coffee.yml"
-        fields:
-          - {label: Title, name: title, widget: string}
-          - {label: Intro, name: intro, widget: markdown}
-          - label: Team
-            name: team
-            widget: list
-            fields:
-              - {label: Name, name: name, widget: string}
-              - {label: Position, name: position, widget: string}
-              - {label: Photo, name: photo, widget: image}
-      - label: "Food"
-        name: "food"
-        create: true
-        file: "site/content/food.yml"
-        fields:
-          - {label: Title, name: title, widget: string}
-          - {label: Intro, name: intro, widget: markdown}
-          - label: Locations
-            name: locations
-            widget: list
-            fields:
-              - {label: Name, name: name, widget: string}
-              - {label: Address, name: address, widget: string}
+    fields:
+      - {label: "Name", name: "name", widget: "string"}
+      - {label: "Description", name: "description", widget: "string"}
+      - {label: "Price (€)", name: "price", widget: "number"}
+  - label: "Food"
+    name: "food"
+    create: true
+    fields:
+      - {label: "Name", name: "name", widget: "string"}
+      - {label: "Description", name: "description", widget: "string"}
+      - {label: "Price (€)", name: "price", widget: "number"}
+  - label: "Promo"
+    name: "promo"
+    create: true
+    fields:
+      - {label: "Name", name: "name", widget: "string"}
+      - {label: "Description", name: "description", widget: "string"}
+      - {label: "Price (€)", name: "price", widget: "number"}
