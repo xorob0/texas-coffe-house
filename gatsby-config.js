@@ -74,6 +74,10 @@ module.exports = {
             subsets: [`latin`],
           },
           {
+            family: `Rye`,
+            subsets: [`latin`],
+          },
+          {
             family: `Amatic SC`,
             subsets: [`latin`],
           },

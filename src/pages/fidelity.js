@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react"
 import { Helmet } from "react-helmet"
 import firebase from "../utils/firebase"
+import styled from "styled-components"
 
 import UserContext from "../userContext"
 
@@ -8,6 +9,26 @@ import Layout from "../components/layout"
 import { BlackBoard } from "../components/dumb/board"
 import { QRCode } from "../components/QRCode"
 import { PrivateRoute } from "../components/privateRoute"
+import { Welcome } from "../components/dumb/welcome"
+
+const Points = styled.h2`
+  font-family: Rye;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+
+  color: #ffffff;
+`
+
+const QRContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+`
 
 const IndexPage = ({ location }) => {
   const [points, setPoints] = useState(0)
@@ -36,11 +57,14 @@ const IndexPage = ({ location }) => {
             content="coffee, cafe, waffles, food, mons, belgium, bergen, belgique"
           />
         </Helmet>
+        <Welcome size="small" />
         <BlackBoard first={true}>
-          <h2>{user.displayName}</h2>
-          <h2>{points}</h2>
-          <h2>{user.uid}</h2>
-          <QRCode value={user.uid} />
+          <Points>
+            You have {points} point{points > 1 ? "s" : ""}
+          </Points>
+          <QRContainer>
+            <QRCode value={user.uid} />
+          </QRContainer>
         </BlackBoard>
       </PrivateRoute>
     </Layout>

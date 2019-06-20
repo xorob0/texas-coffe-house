@@ -52,8 +52,8 @@ const Line = styled.div`
   margin: 50px;
 `
 
-export const Welcome = ({ title, subtitle, description }) => (
-  <Background>
+export const Welcome = ({ title, subtitle, description, size }) => (
+  <Background size={size}>
     {/* TODO: constant folder */}
     <Menu items={PATHS} />
     {title && <H1>{title}</H1>}
