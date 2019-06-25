@@ -56,6 +56,16 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: ${props => (props.left ? "flex-start" : "center")};
   align-items: flex-start;
+  z-index: 20;
+
+  padding-top: 10px;
+`
+const Shadow = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
   z-index: 0;
 
   background: linear-gradient(
@@ -63,8 +73,6 @@ const Wrapper = styled.div`
     rgba(33, 33, 33, 0.8) 0%,
     rgba(0, 0, 0, 0) 100%
   );
-
-  padding-top: 10px;
 `
 
 const BurgerMoving = styled(Burger)`
@@ -72,11 +80,9 @@ const BurgerMoving = styled(Burger)`
   z-index: 99;
 `
 
-export const MobileNavbar = ({
-  slideMenuOpened,
-  toggleSlideMenu,
-  children,
-}) => <SlideMenu isActive={slideMenuOpened}>{children}</SlideMenu>
+export const MobileNavbar = ({ slideMenuOpened, children }) => (
+  <SlideMenu isActive={slideMenuOpened}>{children}</SlideMenu>
+)
 
 const capitalizeFirstLetter = string =>
   string.charAt(0).toUpperCase() + string.slice(1)
@@ -127,6 +133,7 @@ const _Menu = ({ items, small }) => {
           </List>
         </Wrapper>
       )}
+      <Shadow />
     </>
   )
 }
