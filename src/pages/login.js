@@ -17,7 +17,9 @@ const IndexPage = ({ location }) => {
     () =>
       user.uid &&
       navigate(
-        location.state.redirectUrl ? location.state.redirectUrl : "/fidelity/"
+        location && location.state && location.state.redirectUrl
+          ? location.state.redirectUrl
+          : "/fidelity/"
       )
   )
 
@@ -39,12 +41,13 @@ const IndexPage = ({ location }) => {
           onClick={() =>
             auth
               .signInWithPopup(facebookProvider)
-              .then(result => setUser(result.user))
+              .then(result => console.log(result) && setUser(result.user))
           }
         />
-        <LoginButton type="mail" text="Connect with E-Mail" />
+        {/*        <LoginButton type="mail" text="Connect with E-Mail" />
         <LoginButton type="main" text="LOGIN" />
         <LoginButton type="ghost" text="REGISTER" />
+				*/}
       </Background>
 
       <Footer />

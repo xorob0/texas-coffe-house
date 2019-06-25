@@ -64,7 +64,7 @@ const IndexPage = ({ location }) => {
             You have {points} point{points > 1 ? "s" : ""}
           </Points>
           <QRContainer>
-            <QRCode value={user.uid} />
+            <QRCode value={user.uid || ""} />
           </QRContainer>
         </BlackBoard>
         <button

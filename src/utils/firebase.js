@@ -12,7 +12,7 @@ const config = {
 }
 firebase.initializeApp(config)
 export const googleProvider = new firebase.auth.GoogleAuthProvider()
-export const facebookProvider = new firebase.auth.GoogleAuthProvider()
+export const facebookProvider = new firebase.auth.FacebookAuthProvider()
 export const auth = firebase.auth()
 export const changePointsUser = (uid, points, add) => {
   const ref = firebase.database().ref(uid)

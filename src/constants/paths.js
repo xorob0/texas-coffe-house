@@ -1,9 +1,9 @@
-export const COFFEE = "/coffees/"
-export const FOOD = "/food/"
-export const PROMO = "/promo/"
-export const FIDELITY = "/fidelity/"
-export const SCANNER = "/scanner/"
-export const WELCOME = "/"
+export const COFFEE = "coffees"
+export const FOOD = "food"
+export const PROMO = "promo"
+export const FIDELITY = "fidelity"
+export const SCANNER = "scanner"
+export const WELCOME = ""
 export const PATHS = [
   { text: "Welcome", path: WELCOME, forAdmin: false },
   { text: "Coffees", path: COFFEE, forAdmin: false },

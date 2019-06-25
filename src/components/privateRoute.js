@@ -12,10 +12,9 @@ export const PrivateRoute = ({
 
   useEffect(() => {
     if (!user.uid) {
-      navigate(`/login/`, {
+      navigate(`login`, {
         state: { redirectUrl: pathname },
       })
-      return null
     }
 
     if (admin && user.uid !== "u0PF4AXxhOQhis8KZ4Yy9NgXfE52") {
