@@ -55,7 +55,6 @@ const Wrapper = styled.div`
   position: absolute;
   top: 0;
   width: ${props => (props.right ? "100px" : "90vw")};
-  width: 100vw;
   right: ${props => (props.right ? "30px" : "")};
   display: flex;
   justify-content: ${props =>
@@ -149,7 +148,7 @@ const _Menu = ({ items, small }) => {
             signOut()
           }}
           to={`login`}
-          style={itemStyle}
+          style={{ ...itemStyle, maxWidth: "100%" }}
         >
           {user.uid ? "Sign out" : "Sign in"}
         </Link>

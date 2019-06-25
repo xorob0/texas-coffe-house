@@ -1,27 +1,57 @@
 import React from "react"
-import { Helmet } from "react-helmet"
+import { StaticQuery, graphql } from "gatsby"
 
 import Layout from "../components/layout"
 import { Welcome } from "../components/dumb/welcome"
+import { Board } from "../components/dumb/board"
 
-const IndexPage = ({ location }) => (
-  <Layout location={location}>
-    <Helmet title="Texas Coffee House - Promos" defer={false}>
-      <html lang="en-us" />
-      <meta
-        name="description"
-        content="The Website of the Texas Coffe House, a café in Mons, Belgium"
+
+const FoodPage = ({ location, data }) => {
+  const { edges: items } = data.allMarkdownRemark
+  console.log("items", items)
+  const studentPromos = items
+    .map(item => item.node.frontmatter)
+    .filter(item => item.type === "for students")
+  const weeklyPromo = items
+    .map(item => item.node.frontmatter)
+    .filter(item => item.type === "weekly")
+
+  return (
+    <Layout location={location}>
+      <Welcome
+        title="Our Promotions"
+        description="For the cowboys on low budgets"
       />
-      <meta
-        name="keywords"
-        content="coffee, cafe, waffles, food, mons, belgium, bergen, belgique"
-      />
-    </Helmet>
-    <Welcome
-      title="Our Coffees"
-      description="Try the John Wayne! It’s an exeperience !"
-    />
-  </Layout>
+      <Board items={studentPromos} title="Student promotions" first={true} />
+      <Board items={weeklyPromo} title="Our promotion of the week" />
+    </Layout>
+  )
+}
+
+export default location => (
+  <StaticQuery
+    query={graphql`
+      query PromoPageQuery {
+        allMarkdownRemark(
+          sort: { order: DESC, fields: [frontmatter___title] }
+          filter: { frontmatter: { templateKey: { eq: "promo" } } }
+        ) {
+          edges {
+            node {
+              excerpt(pruneLength: 40)
+              id
+              frontmatter {
+                title
+                description
+                price
+                templateKey
+                type
+              }
+            }
+          }
+        }
+      }
+    `}
+    render={data => <FoodPage data={data} location={location} />}
+  />
 )
-
-export default IndexPage

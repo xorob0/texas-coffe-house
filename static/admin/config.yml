@@ -65,7 +65,8 @@ collections:
             label: "Type",
             name: "type",
             widget: "select",
-            options: ["Pomo of the week", "Promo for students"],
+            options: ["weekly", "for students"],
+            default: "weekly",
             }
           - {
               label: "Template Key",

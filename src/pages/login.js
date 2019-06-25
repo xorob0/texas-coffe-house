@@ -49,8 +49,6 @@ const IndexPage = ({ location }) => {
         <LoginButton type="ghost" text="REGISTER" />
 				*/}
       </Background>
-
-      <Footer />
     </Layout>
   )
 }

@@ -18,7 +18,7 @@ module.exports = {
         short_name: "Texas Coffee House",
         description:
           "The app used to manages your fidelity points at the Texas Coffee House, in Mons, Belgium",
-        start_url: "/",
+        start_url: "/fidelity",
         background_color: `#f7f0eb`,
         theme_color: `#996633`,
         display: `standalone`,

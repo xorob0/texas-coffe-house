@@ -31,8 +31,8 @@ const QRContainer = styled.div`
 `
 
 const IndexPage = ({ location }) => {
-  const [points, setPoints] = useState(0)
   const { user, setUser } = useContext(UserContext)
+  const [points, setPoints] = useState(user.points || 0)
 
   useEffect(() => {
     const ref = firebase.database().ref(user.uid)
@@ -40,6 +40,7 @@ const IndexPage = ({ location }) => {
   })
 
   useEffect(() => {
+    setUser({ ...user, points })
     navigator.vibrate(200)
   }, [points])
 
