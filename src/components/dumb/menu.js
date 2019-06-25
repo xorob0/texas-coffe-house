@@ -54,8 +54,9 @@ const List = styled.div`
 const Wrapper = styled.div`
   position: absolute;
   top: 0;
-  left: 0;
-  width: 95vw;
+  width: ${props => (props.right ? "100px" : "90vw")};
+  width: 100vw;
+  right: ${props => (props.right ? "30px" : "")};
   display: flex;
   justify-content: ${props =>
     props.left ? "flex-start" : props.right ? "flex-end" : "center"};
@@ -132,7 +133,7 @@ const _Menu = ({ items, small }) => {
                 key={item.text}
                 style={itemStyle}
                 activeStyle={itemStyleActive}
-                to={`${item.path}`}
+                to={`${item.path}/`}
               >
                 {capitalizeFirstLetter(item.text)}
               </Link>

@@ -14,6 +14,9 @@ const CoffeesPage = ({ location, data }) => {
   const coldCoffees = items
     .map(item => item.node.frontmatter)
     .filter(item => item.type === "cold")
+
+  console.log("hot", hotCoffees)
+  console.log("clod", coldCoffees)
   return (
     <Layout location={location}>
       <Welcome
@@ -43,6 +46,7 @@ export default location => (
                 description
                 price
                 templateKey
+                type
               }
             }
           }

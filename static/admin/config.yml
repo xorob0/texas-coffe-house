@@ -15,6 +15,13 @@ collections:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Description", name: "description", widget: "markdown" }
           - { label: "Price (€)", name: "price", widget: "number" }
+          - { 
+            label: "Type",
+            name: "type",
+            widget: "select",
+            options: ["waffle", "superbowl", "pastery"],
+            default: "waffle",
+            }
           - {
               label: "Template Key",
               name: "templateKey",
@@ -54,6 +61,12 @@ collections:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Description", name: "description", widget: "markdown" }
           - { label: "Price (€)", name: "price", widget: "number" }
+          - { 
+            label: "Type",
+            name: "type",
+            widget: "select",
+            options: ["Pomo of the week", "Promo for students"],
+            }
           - {
               label: "Template Key",
               name: "templateKey",

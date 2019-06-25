@@ -1,51 +1,61 @@
 import React from "react"
-import { Helmet } from "react-helmet"
+import { StaticQuery, graphql } from "gatsby"
 
 import Layout from "../components/layout"
 import { Welcome } from "../components/dumb/welcome"
 import { Board } from "../components/dumb/board"
 
-const ITEMS = [
-  { name: "John ayne", description: "When Hot meet Cold", price: "3,5" },
-  { name: "John Wayne", description: "When Hot meet Cold", price: "3,5" },
-  { name: "John Wayne", description: "When Hot meet Cold", price: "3,5" },
-  { name: "John Wayne", description: "When Hot meet Cold", price: "3,5" },
-  { name: "John Wayne", description: "When Hot meet Cold", price: "3,5" },
-  { name: "John Wayne", description: "When Hot meet Cold", price: "3,5" },
-  { name: "John Wayne", description: "When Hot meet Cold", price: "3,5" },
-  {
-    name: "John Wayne",
-    description: "When Hot meet ColdWhen Hot meet ColdWhen Hot meet Cold",
-    price: "3,5",
-  },
-  { name: "John Wayne", description: "When Hot meet Cold", price: "3,5" },
-  { name: "John Wayne", description: "When Hot meet Cold", price: "3,5" },
-  { name: "John Wayne", description: "When Hot meet Cold", price: "3,5" },
-  { name: "John Wayne", description: "When Hot meet Cold", price: "3,5" },
-  { name: "John Wayne", description: "When Hot meet Cold", price: "3,5" },
-]
 
-const IndexPage = ({ location }) => (
-  <Layout location={location}>
-    <Helmet title="Texas Coffee House - Our Food" defer={false}>
-      <html lang="en-us" />
-      <meta
-        name="description"
-        content="The Website of the Texas Coffe House, a café in Mons, Belgium"
+const FoodPage = ({ location, data }) => {
+  const { edges: items } = data.allMarkdownRemark
+  console.log("items", items)
+  const pasteries = items
+    .map(item => item.node.frontmatter)
+    .filter(item => item.type === "pastery")
+  const superBowl = items
+    .map(item => item.node.frontmatter)
+    .filter(item => item.type === "superbowl")
+  const waffles = items
+    .map(item => item.node.frontmatter)
+    .filter(item => item.type === "waffle")
+
+  return (
+    <Layout location={location}>
+      <Welcome
+        title="Our Food"
+        description="A Waffle a day keeps the doctor away"
       />
-      <meta
-        name="keywords"
-        content="coffee, cafe, waffles, food, mons, belgium, bergen, belgique"
-      />
-    </Helmet>
-    <Welcome
-      title="Our Coffees"
-      description="Try the John Wayne! It’s an exeperience !"
-    />
-    <Board items={ITEMS} title="Our pastery" first={true} />
-    <Board items={ITEMS} title="Our superbowl" />
-    <Board items={ITEMS} title="Our waffles" />
-  </Layout>
+      <Board items={pasteries} title="Our pasteries" first={true} />
+      <Board items={waffles} title="Our waffles" />
+      <Board items={superBowl} title="Our Superbowls" />
+    </Layout>
+  )
+}
+
+export default location => (
+  <StaticQuery
+    query={graphql`
+      query FoodPageQuery {
+        allMarkdownRemark(
+          sort: { order: DESC, fields: [frontmatter___title] }
+          filter: { frontmatter: { templateKey: { eq: "food" } } }
+        ) {
+          edges {
+            node {
+              excerpt(pruneLength: 40)
+              id
+              frontmatter {
+                title
+                description
+                price
+                templateKey
+                type
+              }
+            }
+          }
+        }
+      }
+    `}
+    render={data => <FoodPage data={data} location={location} />}
+  />
 )
-
-export default IndexPage
