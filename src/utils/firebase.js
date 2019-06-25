@@ -28,3 +28,6 @@ export const changePointsUser = (uid, points, add) => {
     .catch(err => window.alert(`Error: ${err}`))
 }
 export default firebase
+export const signOut = () => {
+  firebase.auth().signOut()
+}

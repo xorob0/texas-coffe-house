@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from "react"
 import { Helmet } from "react-helmet"
-import firebase from "../utils/firebase"
+import firebase, { signOut } from "../utils/firebase"
 import styled from "styled-components"
+import { navigate } from "gatsby"
 
 import UserContext from "../userContext"
 
@@ -32,7 +33,7 @@ const QRContainer = styled.div`
 
 const IndexPage = ({ location }) => {
   const [points, setPoints] = useState(0)
-  const { user } = useContext(UserContext)
+  const { user, setUser } = useContext(UserContext)
 
   useEffect(() => {
     const ref = firebase.database().ref(user.uid)
@@ -66,6 +67,15 @@ const IndexPage = ({ location }) => {
             <QRCode value={user.uid} />
           </QRContainer>
         </BlackBoard>
+        <button
+          onClick={() => {
+            signOut()
+            setUser({})
+            navigate("/login/")
+          }}
+        >
+          sign out
+        </button>
       </PrivateRoute>
     </Layout>
   )
