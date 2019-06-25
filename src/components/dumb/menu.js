@@ -14,7 +14,7 @@ export const SlideMenu = styled.div`
   min-width: 0;
   position: fixed;
   padding-left: 0;
-  z-index: 100;
+  z-index: 90;
   top: 0;
   bottom: 0;
   margin: 0;
@@ -69,17 +69,14 @@ const Wrapper = styled.div`
 
 const BurgerMoving = styled(Burger)`
   left: ${props => (props.isOpen ? "calc(100% - 50px)" : "10px")};
+  z-index: 99;
 `
 
 export const MobileNavbar = ({
   slideMenuOpened,
   toggleSlideMenu,
   children,
-}) => (
-  <Fragment>
-    <SlideMenu isActive={slideMenuOpened}>>{children}</SlideMenu>
-  </Fragment>
-)
+}) => <SlideMenu isActive={slideMenuOpened}>{children}</SlideMenu>
 
 const capitalizeFirstLetter = string =>
   string.charAt(0).toUpperCase() + string.slice(1)
@@ -90,29 +87,28 @@ const _Menu = ({ items, small }) => {
     <>
       {small ? (
         <>
-          <MobileNavbar
-            slideMenuOpened={clicked}
-            toggleSlideMenu={() => setClicked(!clicked)}
-          >
-            <List mobile>
-              {items.map(item => (
-                <Link
-                  key={item.text}
-                  style={itemStyle}
-                  activeStyle={itemStyleActive}
-                  to={`/${item.path}/`}
-                >
-                  {capitalizeFirstLetter(item.text)}
-                </Link>
-              ))}
-            </List>
-          </MobileNavbar>
-
           <Wrapper left>
             <BurgerMoving
               onClick={() => setClicked(!clicked)}
               isOpen={clicked}
             />
+            <MobileNavbar
+              slideMenuOpened={clicked}
+              toggleSlideMenu={() => setClicked(!clicked)}
+            >
+              <List mobile>
+                {items.map(item => (
+                  <Link
+                    key={item.text}
+                    style={itemStyle}
+                    activeStyle={itemStyleActive}
+                    to={`/${item.path}/`}
+                  >
+                    {capitalizeFirstLetter(item.text)}
+                  </Link>
+                ))}
+              </List>
+            </MobileNavbar>
           </Wrapper>
         </>
       ) : (
