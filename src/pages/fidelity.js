@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from "react"
 import { Helmet } from "react-helmet"
 import firebase, { signOut } from "../utils/firebase"
 import styled from "styled-components"
-import { navigate } from "gatsby"
 
 import UserContext from "../userContext"
 
@@ -67,15 +66,6 @@ const IndexPage = ({ location }) => {
             <QRCode value={user.uid || ""} />
           </QRContainer>
         </BlackBoard>
-        <button
-          onClick={() => {
-            signOut()
-            setUser({})
-            navigate("/login/")
-          }}
-        >
-          sign out
-        </button>
       </PrivateRoute>
     </Layout>
   )

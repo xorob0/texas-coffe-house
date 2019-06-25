@@ -1,7 +1,11 @@
-import React, { Fragment, useState } from "react"
+import React, { useState, useContext } from "react"
 import styled from "styled-components"
 import { Link } from "gatsby"
 import sizes from "react-sizes"
+import { signOut } from "../../utils/firebase"
+import { navigate } from "gatsby"
+
+import UserContext from "../../userContext"
 
 import Burger from "@animated-burgers/burger-arrow"
 import "@animated-burgers/burger-arrow/dist/styles.css"
@@ -51,14 +55,16 @@ const Wrapper = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  height: 100vh;
-  width: 100vw;
+  width: 95vw;
   display: flex;
-  justify-content: ${props => (props.left ? "flex-start" : "center")};
+  justify-content: ${props =>
+    props.left ? "flex-start" : props.right ? "flex-end" : "center"};
   align-items: flex-start;
   z-index: 20;
 
   padding-top: 10px;
+
+  margin-right: ${props => (props.right ? "20px" : "")};
 `
 const Shadow = styled.div`
   position: absolute;
@@ -89,6 +95,7 @@ const capitalizeFirstLetter = string =>
 
 const _Menu = ({ items, small }) => {
   const [clicked, setClicked] = useState(false)
+  const { user, setUser } = useContext(UserContext)
   return (
     <>
       {small ? (
@@ -125,7 +132,7 @@ const _Menu = ({ items, small }) => {
                 key={item.text}
                 style={itemStyle}
                 activeStyle={itemStyleActive}
-                to={`/${item.path}/`}
+                to={`${item.path}`}
               >
                 {capitalizeFirstLetter(item.text)}
               </Link>
@@ -133,11 +140,24 @@ const _Menu = ({ items, small }) => {
           </List>
         </Wrapper>
       )}
+
+      <Wrapper right>
+        <Link
+          onClick={() => {
+            setUser({})
+            signOut()
+          }}
+          to={`login`}
+          style={itemStyle}
+        >
+          {user.uid ? "Sign out" : "Sign in"}
+        </Link>
+      </Wrapper>
       <Shadow />
     </>
   )
 }
 
-export const Menu = sizes(({ width }) => ({ small: width && width < 700 }))(
+export const Menu = sizes(({ width }) => ({ small: width && width < 900 }))(
   _Menu
 )
