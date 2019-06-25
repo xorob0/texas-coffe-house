@@ -1,9 +1,12 @@
 // TODO alts images
-import React from "react"
+import React, { useContext } from "react"
 import styled from "styled-components"
 
 import { Background } from "./background"
 import { Menu } from "./menu"
+
+import UserContext from "../../userContext"
+import { ADMINS } from "../../constants/admins"
 
 import { PATHS } from "../../constants/paths"
 
@@ -52,17 +55,25 @@ const Line = styled.div`
   margin: 50px;
 `
 
-export const Welcome = ({ title, subtitle, description, size }) => (
-  <Background size={size}>
-    {/* TODO: constant folder */}
-    <Menu items={PATHS} />
-    {title && <H1>{title}</H1>}
-    {subtitle && <H2>{subtitle}</H2>}
-    {description && (
-      <>
-        <Line />
-        <Description>{description}</Description>
-      </>
-    )}
-  </Background>
-)
+export const Welcome = ({ title, subtitle, description, size }) => {
+  const { user } = useContext(UserContext)
+
+  const FILTERED_PATHS = PATHS.filter(
+    p => !p.forAdmin || ADMINS.includes(user.uid)
+  )
+
+  return (
+    <Background size={size}>
+      {/* TODO: constant folder */}
+      <Menu items={FILTERED_PATHS} />
+      {title && <H1>{title}</H1>}
+      {subtitle && <H2>{subtitle}</H2>}
+      {description && (
+        <>
+          <Line />
+          <Description>{description}</Description>
+        </>
+      )}
+    </Background>
+  )
+}
