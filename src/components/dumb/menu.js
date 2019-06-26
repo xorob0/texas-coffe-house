@@ -108,6 +108,7 @@ const _Menu = ({ items, small }) => {
   const { user, setUser } = useContext(UserContext)
   return (
     <>
+      <Shadow />
       {small ? (
         <>
           <MobileMenu>
@@ -187,8 +188,6 @@ const _Menu = ({ items, small }) => {
           </Wrapper>
         </>
       )}
-
-      <Shadow />
     </>
   )
 }
