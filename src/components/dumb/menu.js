@@ -7,9 +7,11 @@ import { navigate } from "gatsby"
 
 import UserContext from "../../userContext"
 
-import Burger from "@animated-burgers/burger-arrow"
-import "@animated-burgers/burger-arrow/dist/styles.css"
+// import Burger from "@animated-burgers/burger-arrow"
+// import "@animated-burgers/burger-arrow/dist/styles.css"
 import "../../styles/burger.css"
+
+import { push as Burger } from "react-burger-menu"
 
 export const SlideMenu = styled.div`
   box-shadow: 0 6px 12px 0 rgba(18, 19, 18, 0.27);
@@ -24,6 +26,14 @@ export const SlideMenu = styled.div`
   margin: 0;
   transition: all 0.275s ease;
   background: #212121;
+`
+
+const MobileMenu = styled(Burger)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
 `
 
 const itemStyle = {
@@ -100,7 +110,29 @@ const _Menu = ({ items, small }) => {
     <>
       {small ? (
         <>
-          <Wrapper left>
+          <MobileMenu>
+            {items.map(item => (
+              <Link
+                key={item.text}
+                style={itemStyle}
+                activeStyle={itemStyleActive}
+                to={`/${item.path}/`}
+              >
+                {capitalizeFirstLetter(item.text)}
+              </Link>
+            ))}
+            <Link
+              onClick={() => {
+                setUser({})
+                signOut()
+              }}
+              to={`login`}
+              style={{ ...itemStyle, maxWidth: "100%" }}
+            >
+              {user.uid ? "Sign out" : "Sign in"}
+            </Link>
+          </MobileMenu>
+          {/*<Wrapper left>
             <BurgerMoving
               onClick={() => setClicked(!clicked)}
               isOpen={clicked}
@@ -122,37 +154,40 @@ const _Menu = ({ items, small }) => {
                 ))}
               </List>
             </MobileNavbar>
-          </Wrapper>
+					</Wrapper>*/}
         </>
       ) : (
-        <Wrapper>
-          <List>
-            {items.map(item => (
-              <Link
-                key={item.text}
-                style={itemStyle}
-                activeStyle={itemStyleActive}
-                to={`${item.path}/`}
-              >
-                {capitalizeFirstLetter(item.text)}
-              </Link>
-            ))}
-          </List>
-        </Wrapper>
+        <>
+          <Wrapper>
+            <List>
+              {items.map(item => (
+                <Link
+                  key={item.text}
+                  style={itemStyle}
+                  activeStyle={itemStyleActive}
+                  to={`${item.path}/`}
+                >
+                  {capitalizeFirstLetter(item.text)}
+                </Link>
+              ))}
+            </List>
+          </Wrapper>
+
+          <Wrapper right>
+            <Link
+              onClick={() => {
+                setUser({})
+                signOut()
+              }}
+              to={`login`}
+              style={{ ...itemStyle, maxWidth: "100%" }}
+            >
+              {user.uid ? "Sign out" : "Sign in"}
+            </Link>
+          </Wrapper>
+        </>
       )}
 
-      <Wrapper right>
-        <Link
-          onClick={() => {
-            setUser({})
-            signOut()
-          }}
-          to={`login`}
-          style={{ ...itemStyle, maxWidth: "100%" }}
-        >
-          {user.uid ? "Sign out" : "Sign in"}
-        </Link>
-      </Wrapper>
       <Shadow />
     </>
   )

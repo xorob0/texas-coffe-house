@@ -58,7 +58,7 @@ const IndexPage = ({ location }) => {
             content="coffee, cafe, waffles, food, mons, belgium, bergen, belgique"
           />
         </Helmet>
-        <Welcome size="small" />
+        <Welcome title="Your fidelity points" />
         <BlackBoard first={true}>
           <Points>
             You have {points} point{points > 1 ? "s" : ""}

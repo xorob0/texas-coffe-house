@@ -31,6 +31,7 @@
     "prop-types": "^15.7.2",
     "qrcode.react": "^0.9.3",
     "react": "^16.8.6",
+    "react-burger-menu": "^2.6.10",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
     "react-qr-reader": "^2.2.1",

@@ -36,7 +36,7 @@ const Wrapper = styled.div`
 `
 
 const Main = styled(Wrapper)`
-	padding:20px;
+  padding: 20px;
 `
 
 const Flex = styled(Wrapper)`
@@ -49,11 +49,11 @@ const Licenses = styled(Wrapper)`
 
 export const Footer = ({ ...props }) => (
   <Main>
-		<Licenses>
-		<License>© Tout droits réservés - Texas Coffee House
-		</License>
-		<License>Site développé par Timothée Simon</License>
-	</Licenses>
+    <Licenses>
+      {/*<License>© Tout droits réservés - Texas Coffee House
+		</License>*/}
+      <License>Site développé par Timothée Simon</License>
+    </Licenses>
     <Flex>
       <Android />
       <Apple />

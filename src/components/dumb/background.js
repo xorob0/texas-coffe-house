@@ -5,7 +5,7 @@ import { StaticQuery, graphql } from "gatsby"
 import BackgroundImage from "gatsby-background-image"
 
 const BackgroundImageWrapper = styled(BackgroundImage)`
-  height: ${({ size }) => (size === "small" ? "50px" : "100vh")};
+  height: ${({ size }) => (size === "small" ? "100px" : "100vh")};
   display: flex;
   flex-direction: column;
   justify-content: center;
