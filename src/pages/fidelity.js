@@ -40,8 +40,8 @@ const IndexPage = ({ location }) => {
   })
 
   useEffect(() => {
-    setUser({ ...user, points })
     navigator.vibrate(200)
+    setUser({ ...user, points })
   }, [points])
 
   return (
