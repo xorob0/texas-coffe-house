@@ -14,6 +14,8 @@ export const PrivateRoute = ({
     if (!user.uid) {
       navigate(`login`, {
         state: { redirectUrl: pathname },
+        noThrow: true,
+        replace: false,
       })
     }
 
