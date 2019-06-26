@@ -33,6 +33,7 @@ export const Background = ({ children, path, ...props }) => (
           loading="eager"
           fadeIn="soft"
           fluid={imageData}
+          critical
           {...props}
         >
           {children}
