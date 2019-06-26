@@ -82,7 +82,7 @@ const Shadow = styled.div`
   left: 0;
   height: 100vh;
   width: 100vw;
-  z-index: 0;
+  z-index: 3;
 
   background: linear-gradient(
     180deg,
