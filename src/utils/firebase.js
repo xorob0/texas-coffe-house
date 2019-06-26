@@ -18,7 +18,7 @@ export const changePointsUser = (uid, points, add) => {
   const ref = firebase.database().ref(uid)
   ref
     .once("value")
-    .then(snapshot => addSub(snapshot.val().total, points, add))
+    .then(snapshot => addSub(snapshot.val().total || 0, points, add))
     .then(total => {
       if (total <= 0) {
         window.alert(`Error: Not enough points`)
